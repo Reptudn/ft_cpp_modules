@@ -3,12 +3,15 @@
 class Contact
 {
 	public:
-		std::string	name;
-		std::string	surname;
-		std::string	phone_number;
-		time_t		create_timestamp;
+		std::string	name = "";
+		std::string	surname = "";
+		std::string	phone_number = "";
+		time_t		create_timestamp = -1;
+		bool		is_empty = true;
 
-		Contact(std::string name = "", std::string = "", std::string phone_number = "") {
+		Contact() : is_empty(true) {}
+
+		Contact(std::string name = "", std::string = "", std::string phone_number = "") : is_empty(false) {
 			this->name = name;
 			this->surname = surname;
 			this->phone_number = phone_number;

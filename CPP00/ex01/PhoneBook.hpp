@@ -14,7 +14,9 @@ class Contact
 		std::string surname;
 		std::string phone_number;
 		time_t		create_timestamp;
+		bool		is_empty;
 
+		Contact();
 		Contact(std::string, std::string, std::string);
 		void printContact();
 };

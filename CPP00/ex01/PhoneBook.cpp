@@ -16,6 +16,13 @@ class PhoneBook
 			if (count >= 8)
 			{
 				Contact& oldest = getOldestContact();
+				int	oldestIndex = getContactIndex(oldest);
+				if (oldestIndex < 0)
+				{
+					std::cout << "Error: oldest contact not found" << std::endl;
+					return;
+				}
+				contacts[oldestIndex] = contact;
 			}
 			else
 			{
@@ -27,14 +34,16 @@ class PhoneBook
 		void search(std::string keyword)
 		{
 			std::cout << "SEARCH for " + keyword << std::endl;
-			for (Contact c : contacts)
+			for (Contact contact : contacts)
 			{
-				// not mine so rewrite this
-				if (c.name.find(keyword) != std::string::npos ||
-					c.surname.find(keyword) != std::string::npos ||
-					c.phone_number.find(keyword) != std::string::npos)
+				if (contact.is_empty)
+					continue;
+
+				if (contact.name.find(keyword) != std::string::npos ||
+					contact.surname.find(keyword) != std::string::npos ||
+					contact.phone_number.find(keyword) != std::string::npos)
 				{
-					c.PrintContact();
+					contact.printContact();
 				}
 			}
 			std::cout << std::endl;
@@ -42,6 +51,31 @@ class PhoneBook
 
 		Contact& getOldestContact()
 		{
-			
+			Contact& oldest = contacts[0];
+			for (Contact contact : contacts)
+			{
+				if (contact.is_empty)
+					continue;
+				
+				if (contact.create_timestamp < oldest.create_timestamp)
+				{
+					oldest = contact;
+				}
+			}
+			return oldest;
+		}
+
+		int	getContactIndex(const Contact& contact)
+		{
+			for (int i = 0; i < count; i++)
+			{
+				if (contacts[i].name == contact.name &&
+					contacts[i].surname == contact.surname &&
+					contacts[i].phone_number == contact.phone_number)
+				{
+					return i;
+				}
+			}
+			return -1;
 		}
 };
