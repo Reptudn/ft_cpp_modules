@@ -22,6 +22,7 @@
 				"files.autoSave": "onFocusChange",
 				"editor.renderWhitespace": "all",
 				"editor.insertSpaces": false,
+				"editor.tabSize": 4,
 				"debug.onTaskErrors": "debugAnyway",
 				"42header.email": "jkauker@student.42.fr",
 				"42header.username": "jkauker"

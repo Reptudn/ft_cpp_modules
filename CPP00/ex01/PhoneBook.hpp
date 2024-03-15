@@ -4,25 +4,30 @@
 #include <iostream>
 #include <string>
 #include <array>
+#include <ctime>
+#include <time.h>
 
 class Contact
 {
-    public:
-        std::string name;
-        std::string surname;
-        std::string phone_number;
-        long        create_timestamp;
+	public:
+		std::string name;
+		std::string surname;
+		std::string phone_number;
+		time_t		create_timestamp;
+
+		Contact(std::string, std::string, std::string);
+		void printContact();
 };
 
 class PhoneBook
 {
-    public:
-        std::array<Contact, 8>  contacts;
-        int                     count;
+	public:
+		std::array<Contact, 8>	contacts;
+		unsigned int			count;
 
-        PhoneBook();
-        void    add();
-        void    search();
+		PhoneBook();
+		void	add();
+		void	search();
 };
 
 #endif

@@ -5,41 +5,43 @@
 
 class PhoneBook
 {
-    public:
-        std::array<Contact, 8> contacts;
-        int count;
+	public:
+		Contact					contacts[8];
+		unsigned int			count;
+		
+		PhoneBook() : count(0) {}
 
-        PhoneBook() : count(0) {
-            for (Contact c : contacts)
-                c.create_timestamp = 0;
-        }
+		void add(const Contact& contact)
+		{
+			if (count >= 8)
+			{
+				Contact& oldest = getOldestContact();
+			}
+			else
+			{
+				contacts[count] = contact;
+				count++;
+			}
+		}
 
-        void add()
-        {
+		void search(std::string keyword)
+		{
+			std::cout << "SEARCH for " + keyword << std::endl;
+			for (Contact c : contacts)
+			{
+				// not mine so rewrite this
+				if (c.name.find(keyword) != std::string::npos ||
+					c.surname.find(keyword) != std::string::npos ||
+					c.phone_number.find(keyword) != std::string::npos)
+				{
+					c.PrintContact();
+				}
+			}
+			std::cout << std::endl;
+		}
 
-        }
-
-        void search(std::string keyword)
-        {
-            std::cout << "SEARCH for " + keyword << std::endl;
-            for (Contact c : contacts)
-            {
-                // not mine so rewrite this
-                if (c.name.find(keyword) != std::string::npos ||
-                    c.surname.find(keyword) != std::string::npos ||
-                    c.phone_number.find(keyword) != std::string::npos)
-                {
-                    std::cout << c.name << " " << c.surname << " " << c.phone_number << std::endl;
-                }
-            }
-            std::cout << std::endl;
-        }
-
-        ~PhoneBook()
-        {
-            for (Contact contact : contacts)
-            {
-                delete contact;
-            }
-        }
+		Contact& getOldestContact()
+		{
+			
+		}
 };
