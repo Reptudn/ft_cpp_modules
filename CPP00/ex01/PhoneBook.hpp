@@ -24,6 +24,7 @@ class PhoneBook
 		unsigned int			count;
 
 		PhoneBook();
+		~PhoneBook();
 		void	Add();
 		void	Search();
 };
