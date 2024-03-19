@@ -1,37 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/19 09:49:55 by jkauker           #+#    #+#             */
+/*   Updated: 2024/03/19 09:49:55 by jkauker          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHONE_BOOK_HPP
 #define PHONE_BOOK_HPP
 
 #include <iostream>
 #include <string>
-#include <array>
 #include <ctime>
 #include <time.h>
-
-class Contact
-{
-	private:
-		std::string	name;
-		std::string	surname;
-		std::string	phone_number;
-
-	public:
-		time_t		create_timestamp;
-		bool		is_empty;
-
-		Contact();
-		void setContact();
-		void printContact();
-};
 
 class PhoneBook
 {
 	public:
-		std::array<Contact, 8>	contacts;
 		unsigned int			count;
 
 		PhoneBook();
-		void	add();
-		void	search();
+		void	Add();
+		void	Search();
 };
 
 #endif

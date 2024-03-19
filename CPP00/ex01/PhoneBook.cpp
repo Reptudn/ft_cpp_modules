@@ -1,7 +1,17 @@
-#include <array>
-#include <vector>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/19 09:24:05 by jkauker           #+#    #+#             */
+/*   Updated: 2024/03/19 09:24:05 by jkauker          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+// #include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 class PhoneBook
 {
@@ -11,7 +21,7 @@ class PhoneBook
 		
 		PhoneBook() : count(0) {}
 
-		void add(const Contact& contact)
+		void Add()
 		{
 			if (count >= 8)
 			{
@@ -24,19 +34,19 @@ class PhoneBook
 			else contacts[count].setContact();
 		}
 
-		void search(std::string keyword)
+		void Search(std::string keyword)
 		{
 			std::cout << "SEARCH for " + keyword << std::endl;
-			for (Contact contact : contacts)
+			for (unsigned int i = 0; i < count; i++)
 			{
-				if (contact.is_empty)
+				if (contacts[i].is_empty)
 					continue;
 
-				if (contact.name.find(keyword) != std::string::npos ||
-					contact.surname.find(keyword) != std::string::npos ||
-					contact.phone_number.find(keyword) != std::string::npos)
+				if (contacts[i].GetName().find(keyword) != std::string::npos ||
+					contacts[i].GetSurname().find(keyword) != std::string::npos ||
+					contacts[i].GetPhoneNumber().find(keyword) != std::string::npos)
 				{
-					contact.printContact();
+					contacts[i].printContact();
 				}
 			}
 			std::cout << std::endl;
@@ -45,26 +55,26 @@ class PhoneBook
 		Contact& getOldestContact()
 		{
 			Contact& oldest = contacts[0];
-			for (Contact contact : contacts)
+			for (unsigned int i = 0; i < count; i++)
 			{
-				if (contact.is_empty)
+				if (contacts[i].is_empty)
 					continue;
 				
-				if (contact.create_timestamp < oldest.create_timestamp)
+				if (contacts[i].create_timestamp < oldest.create_timestamp)
 				{
-					oldest = contact;
+					oldest = contacts[i];
 				}
 			}
 			return oldest;
 		}
 
-		int	getContactIndex(const Contact& contact)
+		int getContactIndex(const Contact& contact)
 		{
-			for (int i = 0; i < count; i++)
+			for (unsigned int i = 0; i < count; i++)
 			{
-				if (contacts[i].name == contact.name &&
-					contacts[i].surname == contact.surname &&
-					contacts[i].phone_number == contact.phone_number)
+				if (contacts[i].GetName() == contact.GetName() &&
+					contacts[i].GetSurname() == contact.GetSurname() &&
+					contacts[i].GetPhoneNumber() == contact.GetPhoneNumber())
 				{
 					return i;
 				}

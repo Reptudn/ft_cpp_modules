@@ -1,17 +1,33 @@
-#include "PhoneBook.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/19 09:23:28 by jkauker           #+#    #+#             */
+/*   Updated: 2024/03/19 09:23:28 by jkauker          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+// #include "Contact.hpp"
+
+#include <iostream>
+#include <string>
+#include <ctime>
 
 class Contact
 {
 	private:
-		std::string	name = "";
-		std::string	surname = "";
-		std::string	phone_number = "";
+		std::string	name;
+		std::string	surname;
+		std::string	phone_number;
 
 	public:
-		time_t		create_timestamp = -1;
-		bool		is_empty = true;
+		time_t		create_timestamp;
+		bool		is_empty;
 
-		Contact() : is_empty(true) {}
+		Contact() :  name(""), surname(""), phone_number(""), create_timestamp(-1), is_empty(true) {}
 
 		void setContact()
 		{
@@ -31,6 +47,21 @@ class Contact
 			std::cout << "Surname: " << surname << std::endl;
 			std::cout << "Phone number: " << phone_number << std::endl;
 			std::cout << "Created: " << std::ctime(&create_timestamp) << std::endl;
+		}
+
+		std::string GetName() const
+		{
+			return name;
+		}
+
+		std::string GetSurname() const
+		{
+			return surname;
+		}
+
+		std::string GetPhoneNumber() const
+		{
+			return phone_number;
 		}
 
 };
