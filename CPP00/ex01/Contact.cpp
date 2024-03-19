@@ -2,20 +2,27 @@
 
 class Contact
 {
-	public:
+	private:
 		std::string	name = "";
 		std::string	surname = "";
 		std::string	phone_number = "";
+
+	public:
 		time_t		create_timestamp = -1;
 		bool		is_empty = true;
 
 		Contact() : is_empty(true) {}
 
-		Contact(std::string name = "", std::string = "", std::string phone_number = "") : is_empty(false) {
-			this->name = name;
-			this->surname = surname;
-			this->phone_number = phone_number;
-			this->create_timestamp = std::time(0);
+		void setContact()
+		{
+			std::cout << "Enter name: ";
+			std::getline(std::cin, name);
+			std::cout << "Enter surname: ";
+			std::getline(std::cin, surname);
+			std::cout << "Enter phone number: ";
+			std::getline(std::cin, phone_number);
+			create_timestamp = std::time(0);
+			is_empty = false;
 		}
 
 		void printContact()

@@ -18,17 +18,10 @@ class PhoneBook
 				Contact& oldest = getOldestContact();
 				int	oldestIndex = getContactIndex(oldest);
 				if (oldestIndex < 0)
-				{
 					std::cout << "Error: oldest contact not found" << std::endl;
-					return;
-				}
-				contacts[oldestIndex] = contact;
+				else contacts[oldestIndex].setContact();
 			}
-			else
-			{
-				contacts[count] = contact;
-				count++;
-			}
+			else contacts[count].setContact();
 		}
 
 		void search(std::string keyword)
