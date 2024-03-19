@@ -61,33 +61,32 @@ void PhoneBook::Search()
 		
 // 		PhoneBook() : count(0) {}
 
-// 		Contact& getOldestContact()
-// 		{
-// 			Contact& oldest = contacts[0];
-// 			for (unsigned int i = 0; i < count; i++)
-// 			{
-// 				if (contacts[i].is_empty)
-// 					continue;
+		Contact& PhoneBook::GetOldestContact()
+		{
+			Contact& oldest = contacts[0];
+			for (unsigned int i = 0; i < count; i++)
+			{
+				if (contacts[i].is_empty)
+					continue;
 				
-// 				if (contacts[i].create_timestamp < oldest.create_timestamp)
-// 				{
-// 					oldest = contacts[i];
-// 				}
-// 			}
-// 			return oldest;
-// 		}
+				if (contacts[i].create_timestamp < oldest.create_timestamp)
+				{
+					oldest = contacts[i];
+				}
+			}
+			return oldest;
+		}
 
-// 		int getContactIndex(const Contact& contact)
-// 		{
-// 			for (unsigned int i = 0; i < count; i++)
-// 			{
-// 				if (contacts[i].GetName() == contact.GetName() &&
-// 					contacts[i].GetSurname() == contact.GetSurname() &&
-// 					contacts[i].GetPhoneNumber() == contact.GetPhoneNumber())
-// 				{
-// 					return i;
-// 				}
-// 			}
-// 			return -1;
-// 		}
-// };
+		int PhoneBook::GetContactIndex(const Contact& contact)
+		{
+			for (unsigned int i = 0; i < count; i++)
+			{
+				if (contacts[i].GetName() == contact.GetName() &&
+					contacts[i].GetSurname() == contact.GetSurname() &&
+					contacts[i].GetPhoneNumber() == contact.GetPhoneNumber())
+				{
+					return i;
+				}
+			}
+			return -1;
+		}

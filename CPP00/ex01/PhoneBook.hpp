@@ -21,12 +21,18 @@
 class PhoneBook
 {
 	public:
-		unsigned int			count;
+		Contact		contacts[8];
+		unsigned int	count;
 
 		PhoneBook();
 		~PhoneBook();
 		void	Add();
 		void	Search();
+
+	private:
+		Contact&	GetOldestContact(const Contact& contact);
+		int			getContactIndex(Contact& contact);
+
 };
 
 #endif
