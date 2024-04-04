@@ -32,8 +32,8 @@ class PhoneBook
 		void	Search();
 
 	private:
-		Contact&	GetOldestContact(const Contact& contact);
-		int			getContactIndex(Contact& contact);
+		Contact&	GetOldestContact();
+		int			GetContactIndex(Contact& contact);
 
 };
 

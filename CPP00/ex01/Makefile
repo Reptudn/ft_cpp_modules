@@ -16,4 +16,9 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
+run: all
+	./$(NAME)
+
+rerun: fclean run
+
 re: fclean all

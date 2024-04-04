@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     if (argc != 1)
         return 1;
 
-    std::cout << "Welcome to the " << argv[0] << "!" << std::endl;
+    std::cout << "Welcome to the " << &argv[0][2] << "!" << std::endl;
 
     PhoneBook book;
 

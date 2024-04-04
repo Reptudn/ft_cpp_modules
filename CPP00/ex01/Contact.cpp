@@ -10,58 +10,48 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "Contact.hpp"
+#include "Contact.hpp"
 
 #include <iostream>
 #include <string>
 #include <ctime>
 
-class Contact
+Contact::Contact() : name(""), surname(""), phone_number(""), create_timestamp(-1), is_empty(true) {}
+
+Contact::~Contact() {}
+
+void Contact::SetContact()
 {
-	private:
-		std::string	name;
-		std::string	surname;
-		std::string	phone_number;
+	std::cout << "Enter name: ";
+	std::getline(std::cin, name);
+	std::cout << "Enter surname: ";
+	std::getline(std::cin, surname);
+	std::cout << "Enter phone number: ";
+	std::getline(std::cin, phone_number);
+	create_timestamp = std::time(0);
+	is_empty = false;
+	std::cout << "Contact created" << std::endl;
+}
 
-	public:
-		time_t		create_timestamp;
-		bool		is_empty;
+void Contact::PrintContact()
+{
+	std::cout << "Name: " << name << std::endl;
+	std::cout << "Surname: " << surname << std::endl;
+	std::cout << "Phone number: " << phone_number << std::endl;
+	std::cout << "Created: " << std::ctime(&create_timestamp) << std::endl;
+}
 
-		Contact() :  name(""), surname(""), phone_number(""), create_timestamp(-1), is_empty(true) {}
+std::string Contact::GetName() const
+{
+	return Contact::name;
+}
 
-		void setContact()
-		{
-			std::cout << "Enter name: ";
-			std::getline(std::cin, name);
-			std::cout << "Enter surname: ";
-			std::getline(std::cin, surname);
-			std::cout << "Enter phone number: ";
-			std::getline(std::cin, phone_number);
-			create_timestamp = std::time(0);
-			is_empty = false;
-		}
+std::string Contact::GetSurname() const
+{
+	return Contact::surname;
+}
 
-		void printContact()
-		{
-			std::cout << "Name: " << name << std::endl;
-			std::cout << "Surname: " << surname << std::endl;
-			std::cout << "Phone number: " << phone_number << std::endl;
-			std::cout << "Created: " << std::ctime(&create_timestamp) << std::endl;
-		}
-
-		std::string GetName() const
-		{
-			return name;
-		}
-
-		std::string GetSurname() const
-		{
-			return surname;
-		}
-
-		std::string GetPhoneNumber() const
-		{
-			return phone_number;
-		}
-
-};
+std::string Contact::GetPhoneNumber() const
+{
+	return Contact::phone_number;
+}
