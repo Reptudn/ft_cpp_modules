@@ -1,12 +1,14 @@
-SRC := Contact.cpp Phonebook.cpp main.cpp
+SRC := main.cpp Contact.cpp PhoneBook.cpp 
 NAME := phonebook
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
+OBJ := $(SRC:.cpp=.o)
 
-all: $(NAME)
+all: $(OBJ)
+	c++ $(FLAGS) $(OBJ) -o $(NAME)
 
-$(NAME): $(SRC)
-	$(CXX) $(FLAGS) $(SRC) -o $(NAME)
+%.o: %.cpp
+	c++ $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f *.o

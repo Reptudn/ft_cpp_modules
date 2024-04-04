@@ -18,6 +18,8 @@
 #include <ctime>
 #include <time.h>
 
+#include "Contact.hpp"
+
 class PhoneBook
 {
 	public:
