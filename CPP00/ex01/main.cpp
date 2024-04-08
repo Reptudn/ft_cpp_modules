@@ -14,6 +14,14 @@
 #include <string>
 #include "PhoneBook.hpp"
 
+void PrintCommans()
+{
+    std::cout << "Available commands:" << std::endl;
+    std::cout << "ADD (add a contact)" << std::endl;
+    std::cout << "SEARCH (using a keyword search for contacts)" << std::endl;
+    std::cout << "EXIT (exit the phonebook)" << std::endl;
+}
+
 int main(int argc, char **argv)
 {
     if (argc != 1)
@@ -25,6 +33,9 @@ int main(int argc, char **argv)
 
     while(true)
     {
+        PrintCommans();
+
+        std::cout << "Enter a command: ";
         std::string input;
         std::getline(std::cin, input);
         if (input == "ADD")

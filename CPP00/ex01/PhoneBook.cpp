@@ -22,6 +22,7 @@ PhoneBook::PhoneBook() {
 
 PhoneBook::~PhoneBook() {}
 
+// TODO: It doesnt work yet that the oldest Contact gets replaced
 void PhoneBook::Add()
 {
 	if (count >= 8)

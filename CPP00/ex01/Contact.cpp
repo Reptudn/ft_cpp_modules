@@ -30,7 +30,7 @@ void Contact::SetContact()
 	std::getline(std::cin, phone_number);
 	create_timestamp = std::time(0);
 	is_empty = false;
-	std::cout << "Contact created" << std::endl;
+	std::cout << "Contact created!" << std::endl;
 }
 
 void Contact::PrintContact()
