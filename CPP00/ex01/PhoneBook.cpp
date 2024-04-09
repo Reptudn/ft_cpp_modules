@@ -28,7 +28,7 @@ void PhoneBook::Add()
 	if (count >= 8)
 	{
 		Contact oldest = GetOldestContact();
-		int	oldestIndex = GetContactIndex(oldest);
+		int	oldestIndex = GetContactIndex(oldest); // FIXME: Wrong index returned
 		if (oldestIndex < 0)
 			std::cout << "Error: oldest contact not found" << std::endl;
 		else contacts[oldestIndex].SetContact();
@@ -63,7 +63,6 @@ void PhoneBook::Search()
 	std::cout << std::endl;
 }
 
-// FIXME: The issue might be in this function
 Contact& PhoneBook::GetOldestContact()
 {
 	Contact& oldest = PhoneBook::contacts[0];
@@ -88,6 +87,7 @@ int PhoneBook::GetContactIndex(Contact& contact)
 			contacts[i].GetSurname() == contact.GetSurname() &&
 			contacts[i].GetPhoneNumber() == contact.GetPhoneNumber())
 		{
+			std::cout << "Found contact "<< contact.GetName() << " at index: " << i << std::endl;
 			return i;
 		}
 	}
