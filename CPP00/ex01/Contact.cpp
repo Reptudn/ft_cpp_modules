@@ -31,6 +31,7 @@ void Contact::SetContact()
 	create_timestamp = std::time(0);
 	is_empty = false;
 	std::cout << "Contact created!" << std::endl;
+	Contact::PrintContact();
 }
 
 void Contact::PrintContact()

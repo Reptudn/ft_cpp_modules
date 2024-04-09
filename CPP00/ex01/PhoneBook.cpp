@@ -34,8 +34,10 @@ void PhoneBook::Add()
 		else contacts[oldestIndex].SetContact();
 	}
 	else contacts[count++].SetContact();
+	std::cout << "Contact count: " << count << std::endl;
 }
 
+// FIXME: Replacing the oldest contact is not working
 void PhoneBook::Search()
 {
 	std::string keyword;
@@ -61,6 +63,7 @@ void PhoneBook::Search()
 	std::cout << std::endl;
 }
 
+// FIXME: The issue might be in this function
 Contact& PhoneBook::GetOldestContact()
 {
 	Contact& oldest = PhoneBook::contacts[0];
