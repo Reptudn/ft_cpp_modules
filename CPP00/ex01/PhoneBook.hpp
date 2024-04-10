@@ -29,7 +29,7 @@ class PhoneBook
 		PhoneBook();
 		~PhoneBook();
 		void	Add();
-		void	Add(std::string name, std::string surname, std::string phone_number);
+		void	Add(std::string name, std::string surname, std::string phone_number, std::string secret, std::string nickname);
 		void	Search();
 
 	private:

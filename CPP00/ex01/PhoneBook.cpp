@@ -22,17 +22,17 @@ PhoneBook::PhoneBook() {
 
 PhoneBook::~PhoneBook() {}
 
-void PhoneBook::Add(std::string name, std::string surname, std::string phone_number)
+void PhoneBook::Add(std::string name, std::string surname, std::string phone_number, std::string secret, std::string nickname)
 {
 	if (count >= 8)
 	{
 		Contact oldest = GetOldestContact();
-		int	oldestIndex = GetContactIndex(oldest); // FIXME: Wrong index returned
+		int	oldestIndex = GetContactIndex(oldest);
 		if (oldestIndex < 0)
 			std::cout << "Error: oldest contact not found" << std::endl;
-		else contacts[oldestIndex].SetContact(name, surname, phone_number);
+		else contacts[oldestIndex].SetContact(name, surname, phone_number, secret, nickname);
 	}
-	else contacts[count++].SetContact(name, surname, phone_number);
+	else contacts[count++].SetContact(name, surname, phone_number, secret, nickname);
 	std::cout << "Contact count: " << count << std::endl;
 }
 
@@ -59,21 +59,26 @@ void PhoneBook::Search()
 	std::cout << std::endl;
 
 	int found = 0;
+	std::cout << "+-------------------------------------------+" << std::endl;
+	std::cout << "|  index   |   name   |  surname | nickname |" << std::endl;
+	std::cout << "+-------------------------------------------+" << std::endl;
 	for (unsigned int i = 0; i < count; i++)
 	{
 		if (contacts[i].is_empty)
 			continue;
 		if (contacts[i].GetName().find(keyword) != std::string::npos ||
 			contacts[i].GetSurname().find(keyword) != std::string::npos ||
-			contacts[i].GetPhoneNumber().find(keyword) != std::string::npos)
+			contacts[i].GetPhoneNumber().find(keyword) != std::string::npos ||
+			contacts[i].GetSecret().find(keyword) != std::string::npos ||
+			contacts[i].GetNickname().find(keyword) != std::string::npos)
 		{
-			contacts[i].PrintContact();
+			contacts[i].PrintContact(found);
 			found++;
 		}
 	}
 	if (found == 0)
-		std::cout << "No contacts found" << std::endl;
-	std::cout << std::endl;
+		std::cout << "|             No contacts found             |" << std::endl;
+	std::cout << "+-------------------------------------------+" << std::endl;
 }
 
 Contact PhoneBook::GetOldestContact()
@@ -98,7 +103,9 @@ int PhoneBook::GetContactIndex(Contact& contact)
 	{
 		if (contacts[i].GetName() == contact.GetName() &&
 			contacts[i].GetSurname() == contact.GetSurname() &&
-			contacts[i].GetPhoneNumber() == contact.GetPhoneNumber())
+			contacts[i].GetPhoneNumber() == contact.GetPhoneNumber() &&
+			contacts[i].GetSecret() == contact.GetSecret() &&
+			contacts[i].GetNickname() == contact.GetNickname())
 		{
 			std::cout << "Found contact "<< contact.GetName() << " at index: " << i << std::endl;
 			return i;
