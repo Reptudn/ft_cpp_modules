@@ -22,6 +22,20 @@ PhoneBook::PhoneBook() {
 
 PhoneBook::~PhoneBook() {}
 
+void PhoneBook::Add(std::string name, std::string surname, std::string phone_number)
+{
+	if (count >= 8)
+	{
+		Contact oldest = GetOldestContact();
+		int	oldestIndex = GetContactIndex(oldest); // FIXME: Wrong index returned
+		if (oldestIndex < 0)
+			std::cout << "Error: oldest contact not found" << std::endl;
+		else contacts[oldestIndex].SetContact(name, surname, phone_number);
+	}
+	else contacts[count++].SetContact(name, surname, phone_number);
+	std::cout << "Contact count: " << count << std::endl;
+}
+
 // TODO: It doesnt work yet that the oldest Contact gets replaced
 void PhoneBook::Add()
 {
@@ -63,9 +77,9 @@ void PhoneBook::Search()
 	std::cout << std::endl;
 }
 
-Contact& PhoneBook::GetOldestContact()
+Contact PhoneBook::GetOldestContact()
 {
-	Contact& oldest = PhoneBook::contacts[0];
+	Contact oldest = PhoneBook::contacts[0];
 	for (unsigned int i = 0; i < count; i++)
 	{
 		if (contacts[i].is_empty)

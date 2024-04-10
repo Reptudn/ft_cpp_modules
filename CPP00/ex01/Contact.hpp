@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 09:49:47 by jkauker           #+#    #+#             */
-/*   Updated: 2024/04/04 18:36:52 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/04/10 08:37:37 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class Contact
 		bool		is_empty;
 
 		void SetContact();
+		void SetContact(std::string name, std::string surname, std::string phone_number);
 		void PrintContact();
 		std::string GetName() const;
 		std::string GetSurname() const;

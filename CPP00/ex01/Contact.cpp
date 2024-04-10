@@ -34,6 +34,17 @@ void Contact::SetContact()
 	Contact::PrintContact();
 }
 
+void Contact::SetContact(std::string name, std::string surname, std::string phone_number)
+{
+	Contact::name = name;
+	Contact::surname = surname;
+	Contact::phone_number = phone_number;
+	create_timestamp = std::time(0);
+	is_empty = false;
+	std::cout << "Contact created!" << std::endl;
+	Contact::PrintContact();
+}
+
 void Contact::PrintContact()
 {
 	std::cout << "Name: " << name << std::endl;

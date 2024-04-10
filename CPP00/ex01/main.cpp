@@ -31,6 +31,15 @@ int main(int argc, char **argv)
 
     PhoneBook book;
 
+    book.Add("John", "Doe", "1234567890");
+    book.Add("Jonas", "Kauker", "0987654321");
+    book.Add("Leon", "Zipp", "5474567445");
+    book.Add("Max", "Mustermann", "1234567890");
+    book.Add("Alex", "Terrible", "2474275774");
+    book.Add("Peter", "Schmidt", "054789234");
+    book.Add("Hans", "Müller", "1234567890");
+    book.Add("Klaus", "Schulze", "1234567890");
+
     while(true)
     {
         PrintCommans();

@@ -29,10 +29,11 @@ class PhoneBook
 		PhoneBook();
 		~PhoneBook();
 		void	Add();
+		void	Add(std::string name, std::string surname, std::string phone_number);
 		void	Search();
 
 	private:
-		Contact&	GetOldestContact();
+		Contact		GetOldestContact();
 		int			GetContactIndex(Contact& contact);
 
 };
