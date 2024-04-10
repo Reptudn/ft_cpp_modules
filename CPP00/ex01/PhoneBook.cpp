@@ -36,13 +36,12 @@ void PhoneBook::Add(std::string name, std::string surname, std::string phone_num
 	std::cout << "Contact count: " << count << std::endl;
 }
 
-// TODO: It doesnt work yet that the oldest Contact gets replaced
 void PhoneBook::Add()
 {
 	if (count >= 8)
 	{
 		Contact oldest = GetOldestContact();
-		int	oldestIndex = GetContactIndex(oldest); // FIXME: Wrong index returned
+		int	oldestIndex = GetContactIndex(oldest);
 		if (oldestIndex < 0)
 			std::cout << "Error: oldest contact not found" << std::endl;
 		else contacts[oldestIndex].SetContact();
@@ -51,7 +50,7 @@ void PhoneBook::Add()
 	std::cout << "Contact count: " << count << std::endl;
 }
 
-// FIXME: Replacing the oldest contact is not working
+// TODO: Make the contacts display like it says in the assignment
 void PhoneBook::Search()
 {
 	std::string keyword;

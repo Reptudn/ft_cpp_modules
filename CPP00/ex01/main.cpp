@@ -14,6 +14,8 @@
 #include <string>
 #include "PhoneBook.hpp"
 
+#define CLEAR "\033c"
+
 void PrintCommans()
 {
     std::cout << "Available commands:" << std::endl;
@@ -27,7 +29,8 @@ int main(int argc, char **argv)
     if (argc != 1)
         return 1;
 
-    std::cout << "Welcome to the " << &argv[0][2] << "!" << std::endl;
+    std::cout << CLEAR;
+
 
     PhoneBook book;
 
@@ -39,6 +42,9 @@ int main(int argc, char **argv)
     book.Add("Peter", "Schmidt", "054789234");
     book.Add("Hans", "Müller", "1234567890");
     book.Add("Klaus", "Schulze", "1234567890");
+
+    std::cout << CLEAR;
+    std::cout << "Welcome to the " << &argv[0][2] << "!" << std::endl;
 
     while(true)
     {

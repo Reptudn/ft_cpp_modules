@@ -45,6 +45,7 @@ void Contact::SetContact(std::string name, std::string surname, std::string phon
 	Contact::PrintContact();
 }
 
+// TODO: Make the contact print like in the assignment
 void Contact::PrintContact()
 {
 	std::cout << "Name: " << name << std::endl;
