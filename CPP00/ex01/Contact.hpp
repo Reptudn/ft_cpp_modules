@@ -6,14 +6,13 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 09:49:47 by jkauker           #+#    #+#             */
-/*   Updated: 2024/04/10 16:36:14 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/04/11 18:00:57 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
-#include <iostream>
 #include <string>
 #include <ctime>
 

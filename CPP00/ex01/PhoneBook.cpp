@@ -107,7 +107,6 @@ int PhoneBook::GetContactIndex(Contact& contact)
 			contacts[i].GetSecret() == contact.GetSecret() &&
 			contacts[i].GetNickname() == contact.GetNickname())
 		{
-			std::cout << "Found contact "<< contact.GetName() << " at index: " << i << std::endl;
 			return i;
 		}
 	}
