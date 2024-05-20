@@ -11,7 +11,7 @@ all: $(OBJ)
 	c++ $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
