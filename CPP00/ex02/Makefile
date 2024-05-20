@@ -1,5 +1,5 @@
-SRC := main.cpp
-NAME := phonebook
+SRC := tests.cpp Account.cpp
+NAME := accounts
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
 OBJ := $(SRC:.cpp=.o)
