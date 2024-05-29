@@ -6,12 +6,13 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:00:41 by jkauker           #+#    #+#             */
-/*   Updated: 2024/05/20 17:51:13 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/05/29 08:28:15 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -69,12 +70,12 @@ int Account::checkAmount(void) const
 
 void Account::displayStatus(void) const
 {
-	
+	// TODO: what do i have to do here?
 }
 
 void Account::_displayTimestamp(void)
 {
-	
+	std::cout << "[" << std::time(0) << "]";
 }
 
 Account::Account(int initial_deposit) : _amount(0), _nbDeposits(0), _nbWithdrawals(0)
