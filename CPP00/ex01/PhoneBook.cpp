@@ -50,23 +50,23 @@ void PhoneBook::Add()
 	std::cout << "Contact count: " << count << std::endl;
 }
 
-// TODO: Make the contacts display like it says in the assignment
 void PhoneBook::Search()
 {
 	std::string keyword;
 	std::cout << "Enter search keyword: ";
 	std::getline(std::cin, keyword);
 	std::cout << std::endl;
+	std::string indexes = "";
 
 	int found = 0;
 	std::cout << "+-------------------------------------------+" << std::endl;
 	std::cout << "|  index   |   name   |  surname | nickname |" << std::endl;
-	std::cout << "+-------------------------------------------+" << std::endl;
+	std::cout << "+----------+----------+----------+----------+" << std::endl;
 	for (unsigned int i = 0; i < count; i++)
 	{
-		if (contacts[i].is_empty)
+		if (contacts[i].is_empty) // continues if the contact is empty
 			continue;
-		if (contacts[i].GetName().find(keyword) != std::string::npos ||
+		if (contacts[i].GetName().find(keyword) != std::string::npos || // if the keyword is found in any of the contact fields
 			contacts[i].GetSurname().find(keyword) != std::string::npos ||
 			contacts[i].GetPhoneNumber().find(keyword) != std::string::npos ||
 			contacts[i].GetSecret().find(keyword) != std::string::npos ||
@@ -74,11 +74,31 @@ void PhoneBook::Search()
 		{
 			contacts[i].PrintContact(found);
 			found++;
+			indexes += std::to_string(i);
 		}
 	}
 	if (found == 0)
 		std::cout << "|             No contacts found             |" << std::endl;
 	std::cout << "+-------------------------------------------+" << std::endl;
+	if (found > 0)
+	{
+		std::string index;
+		std::cout << "Enter index to view contact details: ";
+		std::getline(std::cin, index);
+		if (index.length() == 1 && index[0] >= '0' && index[0] <= '8')
+		{
+			if (indexes.find(index) == std::string::npos)
+			{
+				std::cout << "Error: index not in found contacts" << std::endl;
+				return;
+			}
+			int i = index[0] - '0';
+			if (contacts[i].is_empty)
+				std::cout << "Error: contact is empty" << std::endl;
+			else contacts[i].PrintContact();
+		}
+		else std::cout << "Error: invalid index" << std::endl;
+	}
 }
 
 Contact PhoneBook::GetOldestContact()
