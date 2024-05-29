@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
     book.Add("John", "Doe", "1234567890", "I am John Doe", "JD");
     book.Add("Jonas", "Kauker", "0987654321", "I am Jonas Kauker", "github.com/Reptudn");
-    book.Add("Leon", "Zipp", "5474567445", "I am Leon Zipp", "LZ");
+    book.Add("Leon", "Zipp", "5474567445", "go lang best lang", "amogus");
     book.Add("Max", "Mustermann", "1234567890", "I am Max Mustermann", "MM");
     book.Add("Alex", "Terrible", "2474275774", "I am Alex Terrible", "AT");
     book.Add("Peter", "Schmidt", "054789234", "I am Peter Schmidt", "PS");
