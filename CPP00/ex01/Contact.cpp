@@ -25,6 +25,16 @@ void Contact::SetContact()
 	SetValue("Enter name", name);
 	SetValue("Enter surname", surname);
 	SetValue("Enter phone number", phone_number);
+
+	for (int i = 0; phone_number[i]; i++)
+	{
+		if (phone_number[i] < '0' || phone_number[i] > '9')
+		{
+			std::cout << "Error: phone number must contain only digits" << std::endl;
+			return;
+		}
+	}
+
 	SetValue("Enter secret", secret);
 	SetValue("Enter nickname", nickname);
 

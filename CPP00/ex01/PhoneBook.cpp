@@ -24,6 +24,16 @@ PhoneBook::~PhoneBook() {}
 
 void PhoneBook::Add(std::string name, std::string surname, std::string phone_number, std::string secret, std::string nickname)
 {
+
+	for (int i = 0; phone_number[i]; i++)
+	{
+		if (phone_number[i] < '0' || phone_number[i] > '9')
+		{
+			std::cout << "Error: phone number must contain only digits" << std::endl;
+			return;
+		}
+	}
+
 	if (count >= 8)
 	{
 		Contact oldest = GetOldestContact();
@@ -33,7 +43,7 @@ void PhoneBook::Add(std::string name, std::string surname, std::string phone_num
 		else contacts[oldestIndex].SetContact(name, surname, phone_number, secret, nickname);
 	}
 	else contacts[count++].SetContact(name, surname, phone_number, secret, nickname);
-	std::cout << "Contact count: " << count << std::endl;
+	std::cout << "Total contacts in phonebook " << count << "/8\n" << std::endl;
 }
 
 void PhoneBook::Add()
@@ -47,7 +57,7 @@ void PhoneBook::Add()
 		else contacts[oldestIndex].SetContact();
 	}
 	else contacts[count++].SetContact();
-	std::cout << "Contact count: " << count << std::endl;
+	std::cout << "Total contacts in phonebook " << count << "/8\n" << std::endl;
 }
 
 void PhoneBook::Search()

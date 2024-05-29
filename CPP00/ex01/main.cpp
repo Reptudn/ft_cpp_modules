@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     book.Add("Klaus", "Schulze", "1234567890", "I am Klaus Schulze", "KS");
 
     std::cout << CLEAR;
-    std::cout << "Welcome to the " << &argv[0][2] << "!" << std::endl;
+    std::cout << "Welcome to the " << &argv[0][2] << "!\n" << std::endl;
 
     while(true)
     {
@@ -62,5 +62,6 @@ int main(int argc, char **argv)
         else
             std::cout << "Invalid command: " << input << std::endl;
     }
+    std::cout << "Goodbye!" << std::endl;
     return 0;
 }
