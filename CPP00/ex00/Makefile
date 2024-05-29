@@ -2,7 +2,9 @@ SRC := megaphone.cpp
 OBJ := $(SRC:.cpp=.o)
 FLAGS := -Wall -Wextra -Werror -std=c++98
 
-all: $(OBJ)
+all: megaphone
+
+megaphone: $(OBJ)
 	c++ $(FLAGS) $(OBJ) -o megaphone
 
 %.o: %.cpp

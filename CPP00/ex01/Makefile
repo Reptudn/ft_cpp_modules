@@ -4,7 +4,9 @@ CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
 OBJ := $(SRC:.cpp=.o)
 
-all: $(OBJ)
+all: $(NAME)
+
+$(NAME): $(OBJ)
 	c++ $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
