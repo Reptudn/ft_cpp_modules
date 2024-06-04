@@ -66,12 +66,12 @@ void Contact::SetContact(std::string name, std::string surname, std::string phon
 
 void Contact::PrintContact()
 {
-	std::cout << "Name: " << name << std::endl;
-	std::cout << "Surname: " << surname << std::endl;
-	std::cout << "Phone number: " << phone_number << std::endl;
-	std::cout << "Secret: " << secret << std::endl;
-	std::cout << "Nickname: " << nickname << std::endl;
-	std::cout << "Created: " << std::ctime(&create_timestamp) << std::endl;
+	std::cout << "Name:\t\t" << name << std::endl;
+	std::cout << "Surname:\t" << surname << std::endl;
+	std::cout << "Phone number:\t" << phone_number << std::endl;
+	std::cout << "Secret:\t\t" << secret << std::endl;
+	std::cout << "Nickname:\t" << nickname << std::endl;
+	std::cout << "Created:\t" << std::ctime(&create_timestamp) << std::endl;
 }
 
 std::string Contact::PrintTextRow(std::string toPrint)
@@ -82,7 +82,7 @@ std::string Contact::PrintTextRow(std::string toPrint)
 	return spaces + toPrint;
 }
 
-void Contact::PrintContact(int index) // FIXME: umlaute are two caracters so its not displayed correctly
+void Contact::PrintContact(int index)
 {
 	std::cout << "|         " << index + 1 << "|";
 	std::cout << PrintTextRow(name) << "|";
@@ -96,6 +96,7 @@ void Contact::SetValue(std::string prompt, std::string &value)
 	std::getline(std::cin, value);
 	while (value.empty())
 	{
+		if (std::cin.eof()) break;
 		std::cout << "Error: " << prompt << " must not be empty" << std::endl;
 		std::cout << prompt << ": ";
 		std::getline(std::cin, value);
