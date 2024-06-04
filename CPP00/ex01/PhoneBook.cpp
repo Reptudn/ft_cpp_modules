@@ -82,8 +82,12 @@ void PhoneBook::Search()
 			contacts[i].GetSecret().find(keyword) != std::string::npos ||
 			contacts[i].GetNickname().find(keyword) != std::string::npos)
 		{
-			contacts[i].PrintContact(found);
-			found++;
+			contacts[i].PrintContact(found++);
+			indexes += std::to_string(i);
+		}
+		else if (keyword.length() == 1 && (keyword[0] - '0') == (int)i)
+		{
+			contacts[i].PrintContact(found++);
 			indexes += std::to_string(i);
 		}
 	}
@@ -95,19 +99,18 @@ void PhoneBook::Search()
 		std::string index;
 		std::cout << "Enter index to view contact details: ";
 		std::getline(std::cin, index);
-		if (index.length() == 1 && index[0] >= '0' && index[0] <= '8')
+		if (index.length() == 1 && index[0] > '0' && index[0] <= '8' && index[0] <= found + '0')
 		{
-			if (indexes.find(index) == std::string::npos)
-			{
-				std::cout << "Error: index not in found contacts" << std::endl;
-				return;
-			}
-			int i = index[0] - '0';
-			if (contacts[i].is_empty)
-				std::cout << "Error: contact is empty" << std::endl;
-			else contacts[i].PrintContact();
+			int index_s = indexes[index[0] - '0' - 1] - '0';
+			if (contacts[index_s].is_empty)
+				std::cout << "Error: contact is empty\n" << std::endl;
+			else contacts[index_s].PrintContact();
 		}
-		else std::cout << "Error: invalid index" << std::endl;
+		else if (std::cin.eof())
+		{
+			std::cout << "Canceled search\n" << std::endl;
+		}
+		else std::cout << "Error: invalid index\n" << std::endl;
 	}
 }
 
