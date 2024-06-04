@@ -15,7 +15,7 @@
 
 Zombie::Zombie()
 {
-	
+	this->name = "Random";
 }
 
 Zombie::Zombie(std::string name)
