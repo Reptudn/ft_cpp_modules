@@ -1,5 +1,5 @@
 SRC := main.cpp Zombie.cpp zombieHorde.cpp
-NAME := BrainZ
+NAME := MoarBrainZ
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
 OBJ := $(SRC:.cpp=.o)

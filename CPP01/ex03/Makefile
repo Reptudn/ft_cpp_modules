@@ -1,5 +1,5 @@
-SRC := main.cpp
-NAME := hiBrain
+SRC := main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+NAME := violence
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
 OBJ := $(SRC:.cpp=.o)

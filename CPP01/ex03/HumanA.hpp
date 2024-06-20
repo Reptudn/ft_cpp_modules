@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:42:42 by jkauker           #+#    #+#             */
-/*   Updated: 2024/06/10 08:45:01 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/06/20 12:59:21 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMAN_HPP
-#define HUMAN_HPP
+#include <string>
+#include <iostream>
+
+#ifndef HUMANA_HPP
+#define HUMANA_HPP
 
 #include "Weapon.hpp"
 
@@ -22,7 +25,7 @@ class HumanA
 		std::string name;
 	public:
 		HumanA();
-		HumanA(std::string name);
+		HumanA(std::string name, Weapon weapon);
 		~HumanA();
 		void attack();
 };

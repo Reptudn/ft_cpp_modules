@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.c                                           :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 08:29:34 by jkauker           #+#    #+#             */
-/*   Updated: 2024/06/10 08:39:26 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/06/20 13:01:54 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ Weapon::~Weapon(void)
 
 void Weapon::setType(std::string newType)
 {
-	this->type = type;
+	this->type = newType;
 }
 
-static std::string Weapon::getType()
+std::string Weapon::getType() const
 {
-	return &(this->type);
+	return (this->type);
 }
