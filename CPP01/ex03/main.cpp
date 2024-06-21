@@ -2,6 +2,7 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
+// TODO: when making a weapon, for some reason the destructor is called right away
 int main()
 {
 	{
