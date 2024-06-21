@@ -14,8 +14,8 @@ int main()
 	std::string& ref = variable;
 
 	std::cout << "variable addr:\t" << &variable << std::endl;
-	std::cout << "ptr:\t\t" << *ptr << std::endl;
-	std::cout << "ref:\t\t" << ref << std::endl;
+	std::cout << "ptr:\t\t" << ptr << std::endl;
+	std::cout << "ref:\t\t" << &ref << std::endl;
 
 	// ref = "HI THIS IS REF";
 

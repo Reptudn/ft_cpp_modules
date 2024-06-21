@@ -1,21 +1,22 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB() : name("Unnamed Human") {}
-
-HumanB::HumanB(std::string name) {
-	this->name = name;
-	// this->weapon = nullptr;
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL)
+{
+	std::cout << _name << " spawned." << std::endl;
 }
 
-HumanB::~HumanB() {}
-
-void HumanB::setWeapon(Weapon weapon)
+HumanB::~HumanB()
 {
-	this->weapon = weapon;
+	std::cout << _name << " died." << std::endl;
+}
+
+void HumanB::setWeapon(Weapon &weapon)
+{
+	this->_weapon = &weapon;
 }
 
 void HumanB::attack()
 {
-	std::cout << this->name << " attacks with his " << this->weapon.getType() << std::endl;
+	std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
 }
 
