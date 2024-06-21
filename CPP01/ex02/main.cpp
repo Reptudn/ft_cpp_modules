@@ -6,6 +6,7 @@
 // Reference: a variable that is an alias for another variable (same mem but different name)
 //      -> can change value of the original variable without dereference
 
+// TODO: check if this is correct
 int main()
 {
 	std::string variable = "HI THIS IS BRAIN";
@@ -16,7 +17,7 @@ int main()
 	std::cout << "ptr:\t\t" << *ptr << std::endl;
 	std::cout << "ref:\t\t" << ref << std::endl;
 
-	ref = "HI THIS IS REF";
+	// ref = "HI THIS IS REF";
 
 	std::cout << "variable value:\t" << variable << std::endl;
 	std::cout << "ptr value:\t" << *ptr << std::endl;

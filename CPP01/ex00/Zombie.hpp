@@ -6,11 +6,12 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:36:29 by jkauker           #+#    #+#             */
-/*   Updated: 2024/06/04 14:40:54 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/06/21 10:54:34 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
 
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
