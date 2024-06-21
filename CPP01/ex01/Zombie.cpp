@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 09:52:17 by jkauker           #+#    #+#             */
-/*   Updated: 2024/06/20 11:41:21 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/06/21 11:13:27 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ Zombie::Zombie()
 }
 
 Zombie::Zombie(std::string name)
+{
+	this->name = name;
+}
+
+void Zombie::setName(std::string name)
 {
 	this->name = name;
 }
