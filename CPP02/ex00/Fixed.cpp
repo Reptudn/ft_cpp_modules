@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 19:04:17 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 10:08:16 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/09 15:23:18 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ Fixed::Fixed() : _value(0)
 Fixed::Fixed(Fixed const &old)
 {
 	*this = old;
+	this->_value = old.getRawBits();
 	std::cout << "Copy constructor called" << std::endl;
 }
 

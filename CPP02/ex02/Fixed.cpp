@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:08:33 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 14:34:52 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/09 15:24:25 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,11 +139,13 @@ Fixed Fixed::operator--()
 
 int Fixed::getRawBits(void) const
 {
+	std::cout << "getRawBits member function called" << std::endl;
 	return this->_value;
 }
 
 void Fixed::setRawBits(int const raw)
 {
+	std::cout << "setRawBits member function called" << std::endl;
     this->_value = raw;
 }
 
