@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:09:00 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 11:00:58 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/09 14:16:09 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Fixed
 		static const int	_fractionalBits = 8;
 	public:
 		Fixed();
+		~Fixed();
 		Fixed(const int);
 		Fixed(const float);
 		
@@ -33,25 +34,25 @@ class Fixed
 		bool	operator<=(const Fixed &fixed) const;
 		bool	operator>=(const Fixed &fixed) const;
 
-		Fixed&	operator+(const Fixed &other) const;
-		Fixed&	operator-(const Fixed &other) const;
-		Fixed&	operator*(const Fixed &other) const;
-		Fixed&	operator/(const Fixed &other) const;
+		float	operator+(Fixed other) const;
+		float	operator-(Fixed other) const;
+		float	operator*(Fixed other) const;
+		float	operator/(Fixed other) const;
 
-		Fixed&	operator++(int); //post increment
-		Fixed&	operator++(); // pre increment
-		Fixed&	operator--(int); //post decrement
-		Fixed&	operator--(); // pre decrement
+		Fixed	operator++(int); //post increment
+		Fixed	operator++(); // pre increment
+		Fixed	operator--(int); //post decrement
+		Fixed	operator--(); // pre decrement
 		
 		friend	std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 		float	toFloat(void) const;
 		int		toInt(void) const;
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
-		Fixed&	min(Fixed& a, Fixed& b);
-		Fixed&	max(Fixed& a, Fixed& b);
-		Fixed&	min(const Fixed& a, const Fixed& b);
-		Fixed&	max(const Fixed& a, const Fixed& b);
+		static Fixed&	min(Fixed& a, Fixed& b);
+		static Fixed&	max(Fixed& a, Fixed& b);
+		static const Fixed&	min(const Fixed& a, const Fixed& b);
+		static const Fixed&	max(const Fixed& a, const Fixed& b);
 };
 
 #endif
