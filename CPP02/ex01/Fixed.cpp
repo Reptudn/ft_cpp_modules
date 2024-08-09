@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:08:33 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 15:24:36 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/09 15:46:12 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ Fixed::Fixed() : _value(0)
 	std::cout << "Default constructor called" << std::endl;
 }
 
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called" << std::endl;
+}
+
 // 1 << _fractionalBits if _fractionalBits is 8 is equal to 256
 // this value is being multiplied to keep the decimal places
 // for example 3.5 * 256 = 896
@@ -27,12 +32,19 @@ Fixed::Fixed() : _value(0)
 
 Fixed::Fixed(float value) : _value(static_cast<int>(roundf(value * (1 << _fractionalBits))))
 {
-	std::cout << "Default float constructor called" << std::endl;
+	std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::Fixed(int value) : _value(static_cast<int>(roundf(value * (1 << _fractionalBits))))
 {
-	std::cout << "Default int constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(Fixed const &old)
+{
+	*this = old;
+	this->_value = old.getRawBits();
+	std::cout << "Copy constructor called" << std::endl;
 }
 
 float Fixed::toFloat() const
@@ -52,6 +64,7 @@ std::ostream& operator<<(std::ostream& stream, const Fixed& fixed)
 
 Fixed& Fixed::operator=(Fixed const &fixed)
 {
+	std::cout << "Copy assignment operator called" << std::endl;
 	this->_value = fixed.getRawBits();
 	return *this;
 }

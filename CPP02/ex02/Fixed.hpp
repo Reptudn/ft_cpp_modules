@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:09:00 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 14:16:09 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/09 15:47:53 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Fixed
 		~Fixed();
 		Fixed(const int);
 		Fixed(const float);
+		Fixed(Fixed const &old);
 		
 		Fixed&	operator=(Fixed const &fixed);
 

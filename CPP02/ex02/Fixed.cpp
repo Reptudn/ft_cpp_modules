@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:08:33 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 15:24:25 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/09 15:52:15 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ Fixed::Fixed() : _value(0)
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
+}
+
+Fixed::Fixed(Fixed const &old)
+{
+	*this = old;
+	this->_value = old.getRawBits();
+	std::cout << "Copy constructor called" << std::endl;
+}
+
+Fixed& Fixed::operator=(Fixed const &fixed)
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+	this->_value = fixed.getRawBits();
+	return *this;
 }
 
 // 1 << _fractionalBits if _fractionalBits is 8 is equal to 256
@@ -53,12 +67,6 @@ int Fixed::toInt() const
 std::ostream& operator<<(std::ostream& stream, const Fixed& fixed)
 {
 	return stream << fixed.toFloat();
-}
-
-Fixed& Fixed::operator=(Fixed const &fixed)
-{
-	this->_value = fixed.getRawBits();
-	return *this;
 }
 
 bool	Fixed::operator<(const Fixed &fixed) const
@@ -111,29 +119,35 @@ float	Fixed::operator/(Fixed other) const
 	return this->toFloat() / other.toFloat();
 }
 
+/// XXX: here for me the static cast to int line seems like the only true answer but according to the subject its always the line below
+
 Fixed Fixed::operator++(int)
 {
 	Fixed temp = *this;
-	this->_value = static_cast<int>(roundf((this->toFloat() + 1.0) * (1 << _fractionalBits)));
+	// this->_value = static_cast<int>(roundf((this->toFloat() + 1.0) * (1 << _fractionalBits)));
+	this->_value += 1;
 	return temp;
 }
 
 Fixed Fixed::operator++()
 {
-	this->_value = static_cast<int>(roundf((this->toFloat() + 1.0) * (1 << _fractionalBits)));
+	// this->_value = static_cast<int>(roundf((this->toFloat() + 1.0) * (1 << _fractionalBits)));
+	this->_value += 1;
 	return *this;
 }
 
 Fixed Fixed::operator--(int)
 {
 	Fixed temp = *this;
-	this->_value = static_cast<int>(roundf((this->toFloat() - 1.0)* (1 << _fractionalBits)));
+	// this->_value = static_cast<int>(roundf((this->toFloat() - 1.0)* (1 << _fractionalBits)));
+	this->_value -= 1;
 	return temp;
 }
 
 Fixed Fixed::operator--()
 {
-	this->_value = static_cast<int>(roundf((this->toFloat() - 1.0) * (1 << _fractionalBits)));
+	// this->_value = static_cast<int>(roundf((this->toFloat() - 1.0) * (1 << _fractionalBits)));
+	this->_value -= 1;
 	return *this;
 }
 
