@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:09:00 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 08:28:55 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/09 10:10:51 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ class Fixed
 	private:
 		int					_value;
 		static const int	_fractionalBits = 8;
-		bool				_isFloat;
 	public:
 		Fixed();
 		Fixed(const int);
 		Fixed(const float);
+		Fixed &operator=(Fixed const &fixed);
 		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 		float	toFloat(void) const;
 		int		toInt(void) const;
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
 };
 
 #endif

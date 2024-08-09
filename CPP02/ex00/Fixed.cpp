@@ -6,16 +6,15 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 19:04:17 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/07 11:48:22 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/09 10:08:16 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 
-Fixed::Fixed()
+Fixed::Fixed() : _value(0)
 {
-	this->_value = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
@@ -44,6 +43,6 @@ void Fixed::setRawBits(int const raw)
 
 Fixed& Fixed::operator=(Fixed const &fixed)
 {
-	this->_value = fixed._value;
+	this->_value = fixed.getRawBits();
 	return *this;
 }
