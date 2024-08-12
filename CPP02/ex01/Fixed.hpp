@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:09:00 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 15:45:19 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/12 10:36:28 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Fixed
 		Fixed(const float);
 		Fixed(Fixed const &old);
 		Fixed &operator=(Fixed const &fixed);
-		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+		friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed); // friend keyword allows other classes and methods to access this overload
 		float	toFloat(void) const;
 		int		toInt(void) const;
 		int getRawBits(void) const;
