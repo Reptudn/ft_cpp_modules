@@ -1,5 +1,5 @@
-SRC := main.cpp ClapTrap.cpp
-HEADERS := ClapTrap.hpp
+SRC := main.cpp ClapTrap.cpp ScavTrap.cpp
+HEADERS := ClapTrap.hpp ScavTrap.hpp
 NAME := fixed
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
