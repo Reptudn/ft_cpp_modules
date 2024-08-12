@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:22:18 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/12 16:01:07 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/12 15:41:10 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ ScavTrap::ScavTrap() : ClapTrap("ScavTrap"), _isGuarding(false)
 	std::cout << "Default ScavTrap constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string name) : ClapTrap(name), _isGuarding(false)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name), _isGuarding(false)
 {
 	this->_hit_points = 100;
 	this->_energy_points = 50;
 	this->_attack_damage = 20;
-	std::cout << "ScavTrap name constructor called" << std::endl;
+	std::cout << "Default ScavTrap name constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(ScavTrap const &other) : ClapTrap(other), _isGuarding(false)
@@ -34,15 +34,6 @@ ScavTrap::ScavTrap(ScavTrap const &other) : ClapTrap(other), _isGuarding(false)
 	this->_energy_points = 50;
 	this->_attack_damage = 20;
 	std::cout << "Default ScavTrap copy constructor called" << std::endl;
-}
-
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
-{
-	this->_isGuarding = other._isGuarding;
-	this->_attack_damage = other._attack_damage;
-	this->_energy_points = other._hit_points;
-	this->_name = other._name;
-	std::cout << "ScavTrap assignment override called" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
