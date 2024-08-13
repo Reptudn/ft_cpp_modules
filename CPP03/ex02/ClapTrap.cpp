@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 17:20:35 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/13 09:26:11 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/13 09:34:01 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 	}
 	_hit_points += amount;
 	std::cout << _name << "has been repaired to " << _hit_points << "hp" << std::endl;
+}
+
+std::ostream &operator<<(std::ostream &stream, const ClapTrap &claptrap)
+{
+	return stream << claptrap; // TODO: check what to do here
 }

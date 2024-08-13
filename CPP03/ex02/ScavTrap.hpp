@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:15:03 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/12 15:21:59 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/13 09:31:03 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ class ScavTrap : public ClapTrap
 		void attack(const std::string &target);
 		void guardGate(void);
 };
+
+std::ostream &operator<<(std::ostream &stream, const ScavTrap &scavtrap);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:53:05 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/13 09:26:46 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/13 09:35:33 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,9 @@ FragTrap FragTrap::operator=(const FragTrap &other)
 void FragTrap::highFiveGuys()
 {
 	std::cout << "FragTrap " << _name << " says high-five" << std::endl;
+}
+
+std::ostream &operator<<(std::ostream &stream, const FragTrap &fragtrap)
+{
+	return stream << fragtrap; // TODO: check what to do here
 }
