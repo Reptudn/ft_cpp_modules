@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:22:18 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/13 09:35:02 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/13 12:48:00 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 	this->_attack_damage = other._attack_damage;
 	this->_energy_points = other._hit_points;
 	this->_name = other._name;
+	return *this;
 }
 
 ScavTrap::~ScavTrap()
@@ -72,9 +73,4 @@ void ScavTrap::guardGate(void)
 		std::cout << "ScavTrap " << _name << " is now in gatekeeper mode" << std::endl;
 	else
 		std::cout << "ScavTrap " << _name << " is not in gatekeeper mode anymore" << std::endl;
-}
-
-std::ostream &operator<<(std::ostream &stream, const ScavTrap &scavtrap)
-{
-	return stream << scavtrap; // TODO: check what to do here
 }

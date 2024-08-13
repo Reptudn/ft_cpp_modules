@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:47:08 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/13 09:31:42 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/13 12:04:37 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,5 @@ class FragTrap : public ClapTrap
 		void highFiveGuys(void);
 
 };
-
-std::ostream &operator<<(std::ostream &stream, const FragTrap &fragtrap);
 
 #endif
