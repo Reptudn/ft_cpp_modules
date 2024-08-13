@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:09:00 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/09 15:47:53 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/13 09:16:37 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ class Fixed
 		Fixed	operator--(int); //post decrement
 		Fixed	operator--(); // pre decrement
 		
-		friend	std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 		float	toFloat(void) const;
 		int		toInt(void) const;
 		int		getRawBits(void) const;
@@ -55,5 +54,7 @@ class Fixed
 		static const Fixed&	min(const Fixed& a, const Fixed& b);
 		static const Fixed&	max(const Fixed& a, const Fixed& b);
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif
