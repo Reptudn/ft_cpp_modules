@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 17:20:35 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/12 15:38:37 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/13 09:26:11 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ ClapTrap::ClapTrap(ClapTrap const &other)
 
 ClapTrap &ClapTrap::operator=(ClapTrap const &other)
 {
+	std::cout << "A ClapTrap has been copy assigned from " << _name << std::endl;
+	if (this == &other) return *this;
+
 	this->_name = other._name;
 	this->_hit_points = other._hit_points;
 	this->_attack_damage = other._attack_damage;
 	this->_energy_points = other._energy_points;
-	std::cout << "A ClapTrap has been copy assigned from " << _name << std::endl;
 	return *this;
 }
 

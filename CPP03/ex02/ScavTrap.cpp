@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:22:18 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/12 15:41:10 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/13 09:27:25 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ ScavTrap::ScavTrap(ScavTrap const &other) : ClapTrap(other), _isGuarding(false)
 	this->_energy_points = 50;
 	this->_attack_damage = 20;
 	std::cout << "Default ScavTrap copy constructor called" << std::endl;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+{
+	std::cout << "ScavTrap assignment override called" << std::endl;
+	if (this == &other) return *this;
+
+	this->_isGuarding = other._isGuarding;
+	this->_attack_damage = other._attack_damage;
+	this->_energy_points = other._hit_points;
+	this->_name = other._name;
 }
 
 ScavTrap::~ScavTrap()
