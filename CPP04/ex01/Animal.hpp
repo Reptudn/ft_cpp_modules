@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:38:51 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:56:45 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/14 09:57:00 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 #define ANIMAL_HPP
 
 #include <iostream>
+#include "Brain.hpp"
 
 class Animal
 {
 	protected:
 		std::string type;
 		std::string name;
+		Brain *brain;
 	public:
 		Animal();
 		Animal(std::string name, std::string type);

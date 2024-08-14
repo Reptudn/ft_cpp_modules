@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 13:48:15 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:31:46 by jkauker          ###   ########.fr       */
+/*   Created: 2024/08/13 14:51:01 by jkauker           #+#    #+#             */
+/*   Updated: 2024/08/14 10:04:17 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
-
 #include "Animal.hpp"
-#include <iostream>
+#include "Cat.hpp"
+#include "Dog.hpp"
 
-class Dog : public Animal
+// TODO: check if this leaks
+
+int main()
 {
-	public:
-		Dog();
-		Dog(std::string name);
-		Dog(const Dog &dog);
-		~Dog();
-		Dog &operator=(const Dog &dog);
-		void makeSound() const;
-};
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+	delete j;
+	delete i;
+	
+	return 0;
+}
 
-#endif

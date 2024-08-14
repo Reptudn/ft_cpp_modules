@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:31:31 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/14 09:31:35 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Dog.hpp"
 
-Cat::~Cat()
+Dog::~Dog()
 {
-	std::cout << "Cat Destructor called" << std::endl;
+	std::cout << "Dog Destructor called" << std::endl;
 }
 
-Cat::Cat() : Animal("Random", "Cat")
+Dog::Dog() : Animal("Random", "Dog")
 {
-	std::cout << "Cat Default constructor called" << std::endl;
+	std::cout << "Dog Default constructor called" << std::endl;
 }
 
-Cat::Cat(std::string name) : Animal(name, "Cat")
+Dog::Dog(std::string name) : Animal(name, "Dog")
 {
-	std::cout << "Cat Name constructor called" << std::endl;
+	std::cout << "Dog Name constructor called" << std::endl;
 }
 
-void Cat::makeSound() const
+void Dog::makeSound() const
 {
-	std::cout << "Cat " << this->getName() << ": Meooooww!" << std::endl;
+	std::cout << "Dog " << this->getName() << ": Wooof!" << std::endl;
 }
 
-Cat &Cat::operator=(const Cat &cat)
+Dog &Dog::operator=(const Dog &dog)
 {
-	std::cout << "Cat assignment operator called" << std::endl;
-	if (this == &cat) return *this;
+	std::cout << "Dog assignment operator called" << std::endl;
+	if (this == &dog) return *this;
 
-	this->name = cat.getName();
-	this->type = cat.getType();
+	this->name = dog.getName();
+	this->type = dog.getType();
 	return *this;
 }

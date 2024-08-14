@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 13:48:15 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:31:46 by jkauker          ###   ########.fr       */
+/*   Created: 2024/08/14 09:44:14 by jkauker           #+#    #+#             */
+/*   Updated: 2024/08/14 09:52:53 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
-#include "Animal.hpp"
 #include <iostream>
 
-class Dog : public Animal
+class Brain
 {
+	private:
+		std::string ideas[100];
 	public:
-		Dog();
-		Dog(std::string name);
-		Dog(const Dog &dog);
-		~Dog();
-		Dog &operator=(const Dog &dog);
-		void makeSound() const;
+		Brain();
+		~Brain();
+		Brain(const Brain &brain);
+		Brain &operator=(const Brain &brain);
 };
+
+std::ostream &operator<<(std::ostream &stream, const Brain &brain);
 
 #endif
