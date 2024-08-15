@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:40:24 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/13 12:46:18 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/14 12:15:04 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main(void)
 		a.takeDamage(10);
 		a.takeDamage(10);
 		a.beRepaired(5);
+		b.attack("some random robot on the streets");
 		b.takeDamage(10000);
 	}
 	return (0);
