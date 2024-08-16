@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:53:05 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/15 09:41:19 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/16 14:00:53 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ FragTrap FragTrap::operator=(const FragTrap &other)
 
 void FragTrap::highFiveGuys()
 {
-	if (this->_hit_points) std::cout << "FragTrap " << _name << " says high-five because it is dead :c" << std::endl;
-	else std::cout << "FragTrap " << _name << " can't say high-five" << std::endl;
+	if (this->_hit_points) std::cout << "FragTrap " << _name << " says high-five" << std::endl;
+	else std::cout << "FragTrap " << _name << " can't say high-five because it is dead :c" << std::endl;
 }
