@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 09:44:14 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:41:25 by jkauker          ###   ########.fr       */
+/*   Created: 2024/08/20 14:03:30 by jkauker           #+#    #+#             */
+/*   Updated: 2024/08/20 15:44:17 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
-
 #include <iostream>
 
-class Brain
+#ifndef AMATERIA_HPP
+#define AMETERIA_HPP
+
+#include "ICharacter.hpp"
+
+class AMateria
 {
+	protected:
+		std::string _type;
 	public:
-		std::string ideas[100];
-		Brain();
-		~Brain();
-		Brain(const Brain &brain);
-		Brain &operator=(const Brain &brain);
+		AMateria(std::string const & type);
+		virtual ~AMateria();
+
+		std::string const & getType() const; //Returns the materia type
+		virtual AMateria* clone() const = 0;
+		virtual void use(ICharacter& target);
 };
 
-std::ostream &operator<<(std::ostream &stream, const Brain &brain);
+std::ostream &operator<<(std::ostream &stream, const Amateria &mat);
 
 #endif

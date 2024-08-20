@@ -5,32 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 14:51:01 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:46:38 by jkauker          ###   ########.fr       */
+/*   Created: 2024/08/20 15:49:09 by jkauker           #+#    #+#             */
+/*   Updated: 2024/08/20 15:51:17 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
-#include "Dog.hpp"
-
-// TODO: check if this leaks
+#include "Cure.hpp"
+#include "Ice.hpp"
+#include "Character.hpp"
+#include "MateriaSource.hpp"
+#include "IMateriaSource.hpp"
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 int main()
 {
-	Animal *animal[100];
-
-	for (int i = 0; i < 100; i++)
-	{
-		if (i < 50) animal[i] = new Cat();
-		else animal[i] = new Dog();
-	}
-	
-	for (int i = 0; i < 100; i++)
-	{
-		animal[i]->makeSound();
-	}
-
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+	delete bob;
+	delete me;
+	delete src;
 	return 0;
 }
-

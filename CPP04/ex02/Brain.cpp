@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 09:57:31 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 10:03:42 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/20 13:46:10 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 Brain::Brain()
 {
+	for (int i = 0; i < 100; ++i)
+		this->ideas[i] = "random idea";
 	std::cout << "Brain default constructor called" << std::endl;
 }
 
@@ -37,4 +39,9 @@ Brain &Brain::operator=(const Brain &brain)
 	for (int i = 0; i < 100; ++i)
 		this->ideas[i] = brain.ideas[i];
 	return *this;
+}
+
+std::ostream &operator<<(std::ostream &stream, Brain &brain)
+{
+	return (stream << "has some ideas");
 }

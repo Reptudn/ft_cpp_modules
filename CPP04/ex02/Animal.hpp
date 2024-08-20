@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:38:51 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 10:13:43 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/20 13:56:13 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class Animal
 	protected:
 		std::string type;
 		std::string name;
-		Brain *brain;
 	public:
 		Animal();
 		Animal(std::string name, std::string type);

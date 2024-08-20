@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:48:15 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:41:01 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/20 13:24:51 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 class Cat : public Animal
 {
+	private:
+		Brain *brain;
 	public:
 		Cat();
 		Cat(std::string name);
