@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 09:44:14 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:41:25 by jkauker          ###   ########.fr       */
+/*   Created: 2024/08/20 11:29:31 by jkauker           #+#    #+#             */
+/*   Updated: 2024/08/20 12:48:19 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
-
 #include <iostream>
 
-class Brain
+#ifndef WRONG_CAT_HPP
+#define WRONG_CAT_HPP
+
+#include "WrongAnimal.hpp"
+
+class WrongCat : public WrongAnimal
 {
 	public:
-		std::string ideas[100];
-		Brain();
-		~Brain();
-		Brain(const Brain &brain);
-		Brain &operator=(const Brain &brain);
+		WrongCat();
+		WrongCat(std::string name);
+		WrongCat(const WrongCat &cat);
+		WrongCat &operator=(const WrongCat &cat);
+		~WrongCat();
+		void makeSound() const;
 };
 
-std::ostream &operator<<(std::ostream &stream, const Brain &brain);
+std::ostream &operator<<(std::ostream &stream, const WrongCat &cat);
 
 #endif

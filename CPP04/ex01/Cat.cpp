@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:31:31 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/20 13:26:04 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 Cat::~Cat()
 {
+	delete this->brain;
 	std::cout << "Cat Destructor called" << std::endl;
 }
 
 Cat::Cat() : Animal("Random", "Cat")
 {
+	this->brain = new Brain();
 	std::cout << "Cat Default constructor called" << std::endl;
 }
 
 Cat::Cat(std::string name) : Animal(name, "Cat")
 {
+	this->brain = new Brain();
 	std::cout << "Cat Name constructor called" << std::endl;
 }
 
