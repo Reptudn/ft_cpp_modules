@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 08:21:20 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/21 08:47:41 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/21 09:53:35 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@ Character::Character(std::string name, unsigned int health) : ICharacter(name), 
 Character::~Character()
 {
 	std::cout << "Character destructor called" << std::endl;
-	delete [] static_cast<AMateria**>(inv); // XXX: dont know about this one
+	for (int i = 0; i < 4; i++)
+		if (inv[i] != nullptr) delete inv[i];
+}
+
+Character::Character(const Character &character) : ICharacter(character.name)
+{
+	this->health = character.health;
+	for (int i = 0; i < 4; i++)
+		this->inv[i] = character.inv[i]->clone();
+	std::cout << "Character copy constructor called" << std::endl;
 }
 
 std::string const &Character::getName() const
@@ -67,6 +76,7 @@ void Character::use(int idx, ICharacter& target)
 		std::cout << "No item at slot " << idx << std::endl;
 	else
 	{
+		inv[idx]->use(target);
 		std::cout << this << " used " << inv[idx] << " at " << target.getName() << std::endl;
 		unequip(idx);
 	}
@@ -75,4 +85,13 @@ void Character::use(int idx, ICharacter& target)
 std::ostream &operator<<(std::ostream &stream, const Character &character)
 {
 	return (stream << character.getName());
+}
+
+Character &Character::operator=(const Character &character)
+{
+	this->health = character.health;
+	this->name = character.name;
+	for (int i = 0; i < 4; i++)
+		this->inv[i] = character.inv[i]->clone();
+	std::cout << "Character assignment override called" << std::endl;
 }
