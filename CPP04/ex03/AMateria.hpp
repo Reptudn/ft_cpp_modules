@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:03:30 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 15:44:17 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/21 08:49:25 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 #ifndef AMATERIA_HPP
 #define AMETERIA_HPP
 
-#include "ICharacter.hpp"
+#ifndef ICHARACTER_HPP
+# include "ICharacter.hpp"
+#endif
 
 class AMateria
 {
@@ -30,6 +32,6 @@ class AMateria
 		virtual void use(ICharacter& target);
 };
 
-std::ostream &operator<<(std::ostream &stream, const Amateria &mat);
+std::ostream &operator<<(std::ostream &stream, const AMateria &mat);
 
 #endif

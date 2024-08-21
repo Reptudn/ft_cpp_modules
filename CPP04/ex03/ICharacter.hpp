@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:07:41 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 15:59:06 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/21 08:16:26 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 #define ICHARACTER_HPP
 
 #include "AMateria.hpp"
-#include <iostream>
+#include <sys/types.h>
 
 class ICharacter
 {
-	protected:
-		std::string name;
 	public:
 		ICharacter(std::string name);
 		virtual ~ICharacter() {}
