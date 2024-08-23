@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 08:21:20 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/21 09:53:35 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 14:36:30 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 #include <iostream>
 #include <string>
 
-Character::Character() : ICharacter("Wanderer"), health(20)
+Character::Character() :  health(20)
 {
+	this->name = "Wanderer";
 	std::cout << "Default character constructor called" << std::endl;
 }
 
-Character::Character(std::string name) : ICharacter(name), health(20)
+Character::Character(std::string name) :  health(20)
 {
+	this->name = name;
+	for (int i = 0; i < 4; i++)
+		this->inv[i] = nullptr;
 	std::cout << "Name Character constructor called" << std::endl;
 }
 
-Character::Character(std::string name, unsigned int health) : ICharacter(name), health(health)
+Character::Character(std::string name, unsigned int health) : health(health)
 {
+	this->name = name;
+	for (int i = 0; i < 4; i++)
+		this->inv[i] = nullptr;
 	std::cout << "Name and Health Character constructor called" << std::endl;
 }
 
@@ -36,7 +43,7 @@ Character::~Character()
 		if (inv[i] != nullptr) delete inv[i];
 }
 
-Character::Character(const Character &character) : ICharacter(character.name)
+Character::Character(const Character &character)
 {
 	this->health = character.health;
 	for (int i = 0; i < 4; i++)
@@ -92,6 +99,11 @@ Character &Character::operator=(const Character &character)
 	this->health = character.health;
 	this->name = character.name;
 	for (int i = 0; i < 4; i++)
+	{
+		if (this->inv[i] != nullptr)
+			delete this->inv[i];
 		this->inv[i] = character.inv[i]->clone();
+	}
 	std::cout << "Character assignment override called" << std::endl;
+	return *this;
 }

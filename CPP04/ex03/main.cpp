@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:09 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 09:36:56 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 14:10:44 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "Ice.hpp"
 #include "Character.hpp"
 #include "MateriaSource.hpp"
-#include "IMateriaSource.hpp"
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 

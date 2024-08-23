@@ -1,6 +1,6 @@
 SRC := Animal.cpp Dog.cpp Cat.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
 HEADERS := Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
-NAME := fixed
+NAME := animal
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
 OBJ := $(SRC:.cpp=.o)

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:11:17 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 09:39:35 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 13:52:30 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CURE_HPP
+#define CURE_HPP
 
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
 #include <iostream>
-
-#ifndef CURE_HPP
-#define CURE_HPP
 
 class Cure : public AMateria
 {

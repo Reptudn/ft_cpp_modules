@@ -1,6 +1,6 @@
-SRC := main.cpp AMateria.cpp Character.cpp
-HEADERS := AMateria.hpp ICharacter.hpp
-NAME := fixed
+SRC := main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
+HEADERS := AMateria.hpp ICharacter.hpp Character.hpp Cure.hpp Ice.hpp IMateriaSource.hpp MateriaSource.hpp
+NAME := materia
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
 OBJ := $(SRC:.cpp=.o)

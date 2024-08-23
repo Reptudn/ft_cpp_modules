@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:07:41 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/21 08:16:26 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 14:34:18 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 #define ICHARACTER_HPP
 
 #include "AMateria.hpp"
-#include <sys/types.h>
 
 class ICharacter
 {
 	public:
-		ICharacter(std::string name);
 		virtual ~ICharacter() {}
 		virtual std::string const & getName() const = 0;
 		virtual void equip(AMateria* m) = 0;

@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:03:30 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/21 08:49:25 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 13:45:45 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
 #ifndef AMATERIA_HPP
-#define AMETERIA_HPP
+#define AMATERIA_HPP
 
-#ifndef ICHARACTER_HPP
-# include "ICharacter.hpp"
-#endif
+class ICharacter;
 
 class AMateria
 {

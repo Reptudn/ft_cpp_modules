@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:34:13 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 09:37:00 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 14:06:31 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
 
 #ifndef IMATERIASOURCE_HPP
 #define IMATERIASOURCE_HPP
+
+#include "AMateria.hpp"
 
 class IMateriaSource
 {

@@ -3,39 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:46:22 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 09:52:31 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 14:18:13 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
 MateriaSource::MateriaSource() : IMateriaSource()
 {
+	for (int i = 0; i < 4; i++)
+		mat[i] = nullptr;
 	std::cout << "MateriaSource default constructor called" << std::endl;
 }
 
 MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource destructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+		if (mat[i] != nullptr) delete mat[i];
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &src)
 {
 	std::cout << "MateriaSource assignment operator overload called" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (mat[i] != nullptr)
+			delete mat[i];
+		mat[i] = src.mat[i]->clone();
+	}
+	return *this;
 }
 
-MateriaSource::createMateria(std::string const &type)
+AMateria *MateriaSource::createMateria(std::string const & type)
 {
 	if (type == "ice")
-	{
-
-	}
+		return new Ice();
 	else if (type == "cure")
-	{
-
-	}
+		return new Cure();
 	else std::cout << "Invalid type to create Materia: " + type << std::endl;
+	return nullptr;
+}
+
+void MateriaSource::learnMateria(AMateria *mat)
+{
+	if (!mat) return;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->mat[i] == nullptr)
+		{
+			this->mat[i] = mat;
+			std::cout << "Learned " + mat->getType() << std::endl;
+			return;
+		}
+	}
+	std::cout << "No slots left to learn anoter Materia" << std::endl;
+}
+
+std::ostream &operator<<(std::ostream &stream, const MateriaSource &src)
+{
+	(void)src;
+	return (stream << "MateriaSource");
 }
