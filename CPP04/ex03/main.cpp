@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:09 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 16:46:08 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 17:00:04 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ int main()
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
+	me->equip(tmp);
 	me->equip(new Ice());
 	me->equip(tmp->clone());
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
-	me->use(0, *bob);
+	me->use(1, *bob);
 	me->unequip(6);
 	me->unequip(0);
+	me->use(0, *bob);
 	delete bob;
 	delete me;
 	delete src;

@@ -6,15 +6,13 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:51:01 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 15:23:21 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 16:51:38 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-
-// TODO: check if this leaks
 
 int main()
 {

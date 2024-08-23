@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 08:21:20 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 16:47:09 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 16:58:32 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ void Character::equip(AMateria *m)
 	if (!m) return;
 	for (int i = 0; i < 4; i++)
 	{
+		if (inv[i] == m)
+		{
+			std::cout << m->getType() << " already in inv." << std::endl;
+			return;
+		}
 		if (inv[i] == nullptr)
 		{
 			inv[i] = m;
