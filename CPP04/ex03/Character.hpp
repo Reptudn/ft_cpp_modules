@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:53:08 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/21 09:49:11 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 15:58:19 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Character : public ICharacter
 		std::string name;
 		unsigned int health;
 		AMateria *inv[4];
+		AMateria *floor[100];
 	public:
 		Character();
 		Character(const Character &character);

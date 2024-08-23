@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:46:22 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 14:18:13 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 15:44:05 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &src)
 	{
 		if (mat[i] != nullptr)
 			delete mat[i];
-		mat[i] = src.mat[i]->clone();
+		if (src.mat[i])
+			mat[i] = src.mat[i]->clone();
+		else mat[i] = nullptr;
 	}
 	return *this;
 }
@@ -58,11 +60,12 @@ void MateriaSource::learnMateria(AMateria *mat)
 		if (this->mat[i] == nullptr)
 		{
 			this->mat[i] = mat;
-			std::cout << "Learned " + mat->getType() << std::endl;
+			std::cout << "(MateriaSource) Learned " + mat->getType() + " at " << i << std::endl;
 			return;
 		}
 	}
-	std::cout << "No slots left to learn anoter Materia" << std::endl;
+	std::cout << "No slots left to learn anoter Materia. Deleting it." << std::endl;
+	delete mat;
 }
 
 std::ostream &operator<<(std::ostream &stream, const MateriaSource &src)
