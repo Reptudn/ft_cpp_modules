@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:51:01 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:46:38 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 15:23:21 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main()
 	for (int i = 0; i < 100; i++)
 	{
 		animal[i]->makeSound();
+		delete animal[i];
 	}
 
 	return 0;

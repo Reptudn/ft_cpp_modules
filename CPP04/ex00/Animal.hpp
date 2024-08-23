@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:38:51 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:56:45 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 15:09:29 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Animal
 		Animal(std::string name, std::string type);
 		Animal(const Animal &animal);
 		Animal &operator=(const Animal &animal);
-		virtual ~Animal();
+		virtual ~Animal(); //why virtual? when classes derive from animal and the destructor is not virtual this destructor cannot be called and so might cause leaks
 		virtual void makeSound() const;
 		std::string getName() const;
 		std::string getType() const;

@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 09:57:31 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:46:10 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/23 15:24:54 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ Brain &Brain::operator=(const Brain &brain)
 
 std::ostream &operator<<(std::ostream &stream, Brain &brain)
 {
+	(void)brain;
 	return (stream << "has some ideas");
 }
