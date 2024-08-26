@@ -6,14 +6,14 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 08:21:20 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 10:09:48 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 14:13:08 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 #include <iostream>
 
-Character::Character() :  health(20)
+Character::Character() : health(20)
 {
 	this->name = "Wanderer";
 	std::cout << "Default character constructor called" << std::endl;
