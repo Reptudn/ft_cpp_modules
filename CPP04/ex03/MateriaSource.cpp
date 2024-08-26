@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:46:22 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 15:44:05 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 10:19:46 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ MateriaSource::~MateriaSource()
 	std::cout << "MateriaSource destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		if (mat[i] != nullptr) delete mat[i];
+}
+
+MateriaSource::MateriaSource(const MateriaSource &src) : IMateriaSource()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (src.mat[i]) mat[i] = src.mat[i]->clone();
+		else mat[i] = nullptr;
+	}
+	std::cout << "MateriaSource copy constructor called" << std::endl;
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &src)

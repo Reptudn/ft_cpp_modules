@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:03:30 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 13:45:45 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 10:01:07 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ class AMateria
 		std::string _type;
 	public:
 		AMateria(std::string const & type);
+		AMateria(const AMateria &mat);
+		AMateria &operator=(const AMateria &mat);
 		virtual ~AMateria();
 
 		std::string const & getType() const; //Returns the materia type

@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:15:05 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 14:16:03 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 10:15:16 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ Ice::~Ice()
 	std::cout << "Ice destructor called" << std::endl;
 }
 
-Ice::Ice(const Ice &ice) : AMateria(ice) { }
+Ice::Ice(const Ice &ice) : AMateria(ice)
+{
+	std::cout << "Ice copy constructor called" << std::endl;
+}
 
 void Ice::use(ICharacter &target)
 {
