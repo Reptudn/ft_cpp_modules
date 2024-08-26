@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:19:26 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:22:48 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:37:58 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ class WrongAnimal
 		std::string getName() const;
 		std::string getType() const;
 };
-
-std::ostream &operator<<(std::ostream &stream, const WrongAnimal &animal);
 
 #endif

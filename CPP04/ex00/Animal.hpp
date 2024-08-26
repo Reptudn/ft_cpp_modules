@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:38:51 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 15:09:29 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:33:01 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ class Animal
 		std::string getName() const;
 		std::string getType() const;
 };
-
-std::ostream &operator<<(std::ostream &stream, const Animal &animal);
 
 #endif

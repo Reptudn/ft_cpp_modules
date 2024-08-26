@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:54:03 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:37:14 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,11 @@ Dog &Dog::operator=(const Dog &dog)
 	this->name = dog.getName();
 	this->type = dog.getType();
 	return *this;
+}
+
+Dog::Dog(const Dog &dog)
+{
+	this->name = dog.getName();
+	this->type = dog.getType();
+	std::cout << "Animal copy constructor called" << std::endl;
 }

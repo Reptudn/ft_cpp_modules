@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/14 09:31:31 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:37:06 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,11 @@ Cat &Cat::operator=(const Cat &cat)
 	this->name = cat.getName();
 	this->type = cat.getType();
 	return *this;
+}
+
+Cat::Cat(const Cat &cat)
+{
+	this->name = cat.getName();
+	this->type = cat.getType();
+	std::cout << "Cat copy constructor called" << std::endl;
 }
