@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:34:49 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 09:39:21 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:31:46 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ WrongCat::WrongCat(std::string name) : WrongAnimal(name, "WrongCat")
 	std::cout << "Wrong cat name constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &cat)
+WrongCat::WrongCat(const WrongCat &cat) : WrongAnimal(cat)
 {
 	this->name = cat.getName();
 	this->type = cat.getType();

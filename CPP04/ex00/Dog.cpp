@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 09:37:14 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:30:37 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ Dog &Dog::operator=(const Dog &dog)
 	return *this;
 }
 
-Dog::Dog(const Dog &dog)
+Dog::Dog(const Dog &dog) : Animal(dog)
 {
 	this->name = dog.getName();
 	this->type = dog.getType();

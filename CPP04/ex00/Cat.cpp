@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 09:37:06 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:30:58 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ Cat &Cat::operator=(const Cat &cat)
 	return *this;
 }
 
-Cat::Cat(const Cat &cat)
+Cat::Cat(const Cat &cat) : Animal(cat)
 {
 	this->name = cat.getName();
 	this->type = cat.getType();
