@@ -6,11 +6,12 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:42:32 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:24:41 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:43:08 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+
 
 Animal::~Animal()
 {
@@ -26,6 +27,14 @@ Animal::Animal(std::string name, std::string type) : type(type), name(name)
 {
 	std::cout << "Animal Name and Type constructor called" << std::endl;
 }
+
+Animal::Animal(const Animal &animal)
+{
+	this->name = animal.getName();
+	this->type = animal.getType();
+	std::cout << "Animal copy constructor called" << std::endl;
+}
+
 Animal &Animal::operator=(const Animal &animal)
 {
 	std::cout << "Animal assignment operator called" << std::endl;

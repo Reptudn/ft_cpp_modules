@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:26:04 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:58:54 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,22 @@ Cat &Cat::operator=(const Cat &cat)
 	this->name = cat.getName();
 	this->type = cat.getType();
 	return *this;
+}
+
+Cat::Cat(const Cat &cat)
+{
+	this->name = cat.getName();
+	this->type = cat.getType();
+	this->brain = new Brain(*cat.brain);
+	std::cout << "Cat copy constructor called" << std::endl;
+}
+
+std::string Cat::getIdea(int idx) const
+{
+	if (idx < 0 || idx >= 100)
+	{
+		std::cout << "Invalid idea index (0 - 99)" << std::endl;
+		return "";
+	}
+	return this->brain->ideas[idx];
 }

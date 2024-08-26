@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 13:48:15 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:24:51 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:50:13 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Cat : public Animal
 		~Cat();
 		Cat &operator=(const Cat &cat);
 		void makeSound() const;
+		std::string getIdea(int idx) const;
 };
 
 #endif

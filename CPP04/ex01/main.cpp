@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:51:01 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 16:51:38 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:54:41 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ int main()
 		animal[i]->makeSound();
 		delete animal[i];
 	}
+
+	std::cout << "\n--------------\n" << std::endl;
+
+	Dog tmp;
+	tmp = Dog("Hans");
+
+	Dog tmp2 = Dog(tmp);
+
+	std::string idea0 = tmp.getIdea(0);
+	std::string idea2 = tmp2.getIdea(0);
+
+	if (&idea0 == &idea2)
+		std::cout << "---> Both got exactly the same idea" << std::endl;
+	else
+		std::cout << "---> Their ideas are different" << std::endl;
 
 	return 0;
 }

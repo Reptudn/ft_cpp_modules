@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:25:41 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/26 09:52:33 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,22 @@ Dog &Dog::operator=(const Dog &dog)
 	this->name = dog.getName();
 	this->type = dog.getType();
 	return *this;
+}
+
+Dog::Dog(const Dog &dog)
+{
+	this->name = dog.getName();
+	this->type = dog.getType();
+	this->brain = new Brain(*dog.brain);
+	std::cout << "Animal copy constructor called" << std::endl;
+}
+
+std::string Dog::getIdea(int idx) const
+{
+	if (idx < 0 || idx >= 100)
+	{
+		std::cout << "Invalid idea index (0 - 99)" << std::endl;
+		return "";
+	}
+	return this->brain->ideas[idx];
 }
