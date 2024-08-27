@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:51:01 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/20 13:21:57 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 11:22:52 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int main()
 
 	wanimal->makeSound();
 	wcat->makeSound();
+
+	const Dog &dog2 = Dog("Pete");
+	const Dog dog3 = Dog(dog2);
 
 	delete meta;
 	delete cat;

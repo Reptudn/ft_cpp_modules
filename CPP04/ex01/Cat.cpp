@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/27 09:37:51 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 11:27:57 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ Cat &Cat::operator=(const Cat &cat)
 
 	this->name = std::string(cat.name);
 	this->type = std::string(cat.type);
+	if (this->brain) delete this->brain;
+	this->brain = new Brain(*cat.brain);
 	return *this;
 }
 

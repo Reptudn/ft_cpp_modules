@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/27 09:37:22 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 11:28:12 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ Cat::Cat(const Cat &cat) : Animal(cat)
 {
 	this->name = std::string(cat.name);
 	this->type = std::string(cat.type);
+	if (this->brain) delete this->brain;
 	this->brain = new Brain(*cat.brain);
 	std::cout << "Cat copy constructor called" << std::endl;
 }

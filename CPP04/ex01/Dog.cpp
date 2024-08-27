@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/27 09:37:42 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 11:27:41 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ Dog &Dog::operator=(const Dog &dog)
 
 	this->name = std::string(dog.getName());
 	this->type = std::string(dog.getType());
+	if (this->brain) delete this->brain;
+	this->brain = new Brain(*dog.brain);
 	return *this;
 }
 
@@ -50,7 +52,7 @@ Dog::Dog(const Dog &dog) : Animal(dog)
 	this->name = std::string(dog.getName());
 	this->type = std::string(dog.getType());
 	this->brain = new Brain(*dog.brain);
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << "Dog copy constructor called" << std::endl;
 }
 
 std::string Dog::getIdea(int idx) const
