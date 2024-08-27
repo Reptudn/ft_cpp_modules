@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:15:05 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 10:15:16 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:27:31 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ void Ice::use(ICharacter &target)
 AMateria *Ice::clone() const
 {
 	return new Ice(*this);
+}
+
+Ice &Ice::operator=(const Ice &ice)
+{
+	std::cout << "Ice assignment operator overload called" << std::endl;
+	if (this == &ice) return *this;
+
+	this->_type = std::string(ice._type);
+
+	return *this;
 }
 
 std::ostream &operator<<(std::ostream &stream, const Ice &ice)

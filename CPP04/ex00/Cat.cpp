@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 09:30:58 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:42:22 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ Cat &Cat::operator=(const Cat &cat)
 	std::cout << "Cat assignment operator called" << std::endl;
 	if (this == &cat) return *this;
 
-	this->name = cat.getName();
-	this->type = cat.getType();
+	this->name = std::string(cat.getName());
+	this->type = std::string(cat.getType());
 	return *this;
 }
 
 Cat::Cat(const Cat &cat) : Animal(cat)
 {
-	this->name = cat.getName();
-	this->type = cat.getType();
+	this->name = std::string(cat.getName());
+	this->type = std::string(cat.getType());
 	std::cout << "Cat copy constructor called" << std::endl;
 }

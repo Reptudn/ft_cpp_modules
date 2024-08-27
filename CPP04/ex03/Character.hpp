@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:53:08 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/23 15:58:19 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:29:18 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 class Character : public ICharacter
 {
 	private:
-		std::string name;
 		unsigned int health;
+		std::string name;
 		AMateria *inv[4];
 		AMateria *floor[100];
 	public:

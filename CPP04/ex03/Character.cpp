@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 08:21:20 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 14:13:08 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:52:14 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 #include <iostream>
+#include <string>
 
-Character::Character() : health(20)
+Character::Character() : health(20), name(std::string("Wanderer"))
 {
-	this->name = "Wanderer";
 	std::cout << "Default character constructor called" << std::endl;
 }
 
-Character::Character(std::string name) : health(20)
+Character::Character(std::string name) : health(20), name(std::string(name))
 {
-	this->name = name;
 	for (int i = 0; i < 4; i++)
 		this->inv[i] = nullptr;
 	for (int i = 0; i < 100; i++)
@@ -29,9 +28,8 @@ Character::Character(std::string name) : health(20)
 	std::cout << "Name Character constructor called" << std::endl;
 }
 
-Character::Character(std::string name, unsigned int health) : health(health)
+Character::Character(std::string name, unsigned int health) : health(health), name(std::string(name))
 {
-	this->name = name;
 	for (int i = 0; i < 4; i++)
 		this->inv[i] = nullptr;
 	for (int i = 0; i < 100; i++)
@@ -48,9 +46,8 @@ Character::~Character()
 		if (this->floor[i] != nullptr) delete this->floor[i];
 }
 
-Character::Character(const Character &character)
+Character::Character(const Character &character) : health(character.health), name(std::string(character.name))
 {
-	this->health = character.health;
 	for (int i = 0; i < 4; i++)
 	{
 		if (character.inv[i])
@@ -140,8 +137,13 @@ std::ostream &operator<<(std::ostream &stream, const Character &character)
 
 Character &Character::operator=(const Character &character)
 {
+	std::cout << "Character assignment override called" << std::endl;
+
+	if (this == &character) return *this;
+
 	this->health = character.health;
-	this->name = character.name;
+	this->name = std::string(character.name);
+	
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->inv[i] != nullptr)
@@ -156,6 +158,5 @@ Character &Character::operator=(const Character &character)
 			this->floor[i] = character.floor[i]->clone();
 		else this->floor[i] = nullptr;
 	}
-	std::cout << "Character assignment override called" << std::endl;
 	return *this;
 }

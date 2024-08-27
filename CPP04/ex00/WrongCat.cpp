@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:34:49 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 09:31:46 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:46:32 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ WrongCat::WrongCat(std::string name) : WrongAnimal(name, "WrongCat")
 
 WrongCat::WrongCat(const WrongCat &cat) : WrongAnimal(cat)
 {
-	this->name = cat.getName();
-	this->type = cat.getType();
+	this->name = std::string(cat.getName());
+	this->type = std::string(cat.getType());
 	std::cout << "Wrong cat copy constructor called" << std::endl;
 }
 
@@ -39,8 +39,8 @@ WrongCat &WrongCat::operator=(const WrongCat &animal)
 	std::cout << "Wrong cat assignment operator overload called" << std::endl;
 	if (this == &animal) return *this;
 
-	this->name = animal.getName();
-	this->type = animal.getType();
+	this->name = std::string(animal.getName());
+	this->type = std::string(animal.getType());
 	return *this;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 09:57:31 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/21 15:19:38 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:38:33 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Brain::~Brain()
 Brain::Brain(const Brain &brain)
 {
 	for (int i = 0; i < 100; ++i)
-		this->ideas[i] = brain.ideas[i];
+		this->ideas[i] = std::string(brain.ideas[i]);
 	std::cout << "Brain destructor called" << std::endl;
 }
 
@@ -37,7 +37,7 @@ Brain &Brain::operator=(const Brain &brain)
 	if (this == &brain) return *this;
 
 	for (int i = 0; i < 100; ++i)
-		this->ideas[i] = brain.ideas[i];
+		this->ideas[i] = std::string(brain.ideas[i]);
 	return *this;
 }
 

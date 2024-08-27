@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:49:09 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 14:21:12 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:30:00 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,19 @@ int main()
 		
 		Character &lol_ref = *lol;
 		Character *pog = new Character(lol_ref);
+		Character &pog_ref = *pog;
 
-		pog->use(0, lol_ref);
-		pog->use(1, lol_ref);
-		pog->use(2, lol_ref);
-		pog->use(3, lol_ref);
+		delete lol;
+
+		pog->use(0, pog_ref);
+		pog->use(1, pog_ref);
+		pog->use(2, pog_ref);
+		pog->use(3, pog_ref);
+
+		std::cout << pog->getName() << std::endl;
+
+		delete pog;
+
 	}
 
 	return 0;

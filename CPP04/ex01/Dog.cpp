@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 09:32:04 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:37:42 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ Dog &Dog::operator=(const Dog &dog)
 	std::cout << "Dog assignment operator called" << std::endl;
 	if (this == &dog) return *this;
 
-	this->name = dog.getName();
-	this->type = dog.getType();
+	this->name = std::string(dog.getName());
+	this->type = std::string(dog.getType());
 	return *this;
 }
 
 Dog::Dog(const Dog &dog) : Animal(dog)
 {
-	this->name = dog.getName();
-	this->type = dog.getType();
+	this->name = std::string(dog.getName());
+	this->type = std::string(dog.getType());
 	this->brain = new Brain(*dog.brain);
 	std::cout << "Animal copy constructor called" << std::endl;
 }

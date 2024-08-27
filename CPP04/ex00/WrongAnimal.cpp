@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:19:14 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 09:37:57 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:45:44 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ WrongAnimal::WrongAnimal() : type("Wrong Animal"), name("Random")
 
 WrongAnimal::WrongAnimal(const WrongAnimal &animal)
 {
-	this->name = animal.getName();
-	this->type = animal.getType();
+	this->name = std::string(animal.getName());
+	this->type = std::string(animal.getType());
 	std::cout << "Wrong animal copy constructor called" << std::endl;
 }
 
@@ -39,8 +39,8 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &animal)
 	std::cout << "WrongAnimal assignment operator called" << std::endl;
 	if (this == &animal) return *this;
 
-	this->name = animal.getName();
-	this->type = animal.getType();
+	this->name = std::string(animal.getName());
+	this->type = std::string(animal.getType());
 	return *this;
 }
 

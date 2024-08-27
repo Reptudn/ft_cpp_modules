@@ -3,24 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 13:26:31 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 10:08:51 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:51:47 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
 
-AMateria::AMateria(std::string const & type) : _type(type)
+AMateria::AMateria() : _type("undefined materia type")
+{
+	std::cout << "AMateria default constructor called" << std::endl;
+}
+
+AMateria::AMateria(std::string const & type) : _type(std::string(type))
 {
 	std::cout << "AMateria name constructor called" << std::endl;
 }
 
 AMateria::AMateria(const AMateria &mat)
 {
-	this->_type = mat.getType();
+	this->_type = std::string(mat.getType());
 	std::cout << "AMateria copy constructor called" << std::endl;
 }
 
@@ -28,7 +33,7 @@ AMateria &AMateria::operator=(const AMateria &mat)
 {
 	std::cout << "AMateria assignment overload called" << std::endl;
 	if (this == &mat) return *this;
-	this->_type = mat.getType();
+	this->_type = std::string(mat.getType());
 	return *this;
 }
 

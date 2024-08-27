@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 09:15:05 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 10:14:21 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:28:09 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,14 @@ AMateria *Cure::clone() const
 std::ostream &operator<<(std::ostream &stream, const Cure &cure)
 {
 	return (stream << cure.getType());
+}
+
+Cure &Cure::operator=(const Cure &cure)
+{
+	std::cout << "Cure assignment operator overload called" << std::endl;
+	if (this == &cure) return *this;
+
+	this->_type = std::string(cure._type);
+
+	return *this;
 }

@@ -6,11 +6,12 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/26 09:32:17 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 09:37:51 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
+#include <string>
 
 Cat::~Cat()
 {
@@ -40,15 +41,15 @@ Cat &Cat::operator=(const Cat &cat)
 	std::cout << "Cat assignment operator called" << std::endl;
 	if (this == &cat) return *this;
 
-	this->name = cat.getName();
-	this->type = cat.getType();
+	this->name = std::string(cat.name);
+	this->type = std::string(cat.type);
 	return *this;
 }
 
 Cat::Cat(const Cat &cat) : Animal(cat)
 {
-	this->name = cat.getName();
-	this->type = cat.getType();
+	this->name = std::string(cat.name);
+	this->type = std::string(cat.type);
 	this->brain = new Brain(*cat.brain);
 	std::cout << "Cat copy constructor called" << std::endl;
 }
