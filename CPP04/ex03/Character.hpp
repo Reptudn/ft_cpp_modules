@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:53:08 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/27 09:29:18 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 10:28:11 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Character : public ICharacter
 		unsigned int health;
 		std::string name;
 		AMateria *inv[4];
-		AMateria *floor[100];
+		AMateria *floor[100]; // why only 100? because im allowed to handle it on my own and this is not the main focus of this ex03
 	public:
 		Character();
 		Character(const Character &character);

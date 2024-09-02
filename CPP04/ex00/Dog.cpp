@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 14:26:21 by jkauker           #+#    #+#             */
-/*   Updated: 2024/08/27 09:42:51 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/08/27 11:23:50 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ Dog::Dog(const Dog &dog) : Animal(dog)
 {
 	this->name = std::string(dog.getName());
 	this->type = std::string(dog.getType());
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << "Dog copy constructor called" << std::endl;
 }
