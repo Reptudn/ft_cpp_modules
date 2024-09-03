@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:06:03 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/02 17:33:09 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/03 08:40:28 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,33 @@
 
 #include <exception>
 #include <iostream>
-
-
+#include <ostream>
 
 class Bureaucrat
 {
 	private:
 		const std::string _name;
-		unsigned short _grade;
+		int _grade;
 	public:
 		Bureaucrat();
 		~Bureaucrat();
-		Bureaucrat(unsigned short grade, std::string name);
-		Bureaucrat(unsigned short grade);
+		Bureaucrat(int grade, std::string name);
+		Bureaucrat(int grade);
 		Bureaucrat(const Bureaucrat &creat);
-		Bureaucrat operator=(const Bureaucrat &ther);
+		Bureaucrat &operator=(const Bureaucrat &ther);
 		std::string getName() const;
-		unsigned short getGrade() const;
-		class GradeTooHighExcetion : std::exception
+		int getGrade() const;
+		class GradeTooHighException : std::exception
 		{
 			public:
-				const char* what() const noexcept override
-				{
-					return "Grade is too high!";
-				}
+				const char* what() const throw();
 		};
-		class GradeTooLowExcetion : std::exception
+		class GradeTooLowException : std::exception
 		{
 			public:
-				const char* what() const noexcept override
-				{
-					return "Grade is too low!";
-				}
+				const char* what() const throw();
 		};
 
 };
+
+std::ostream &operator<<(std::ostream &stream, const Bureaucrat &crat);

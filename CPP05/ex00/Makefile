@@ -6,21 +6,21 @@ FLAGS := -Wall -Wextra -Werror -std=c++98
 OBJ := $(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)
-        $(CXX) $(FLAGS) $(OBJ) -o $(NAME)
+		$(CXX) $(FLAGS) $(OBJ) -o $(NAME)
 
 all: $(NAME)
 
 %.o: %.cpp
-        c++ $(FLAGS) -c $< -o $@
+		c++ $(FLAGS) -c $< -o $@
 
 clean:
-        rm -f $(OBJ)
+		rm -f $(OBJ)
 
 fclean: clean
-        rm -f $(NAME)
+		rm -f $(NAME)
 
 run: all
-        ./$(NAME)
+		./$(NAME)
 
 rerun: fclean run
 
