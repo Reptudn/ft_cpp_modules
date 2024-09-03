@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:30:44 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 08:46:18 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/03 08:49:43 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ int main()
 
 		Bureaucrat c = Bureaucrat(160, "Stefan");
 
+	}
+	catch (Bureaucrat::GradeTooHighException &ex)
+	{
+		std::cout << "Grade too high error: " << ex.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooLowException &ex)
+	{
+		std::cout << "Grade too low error: " << ex.what() << std::endl;
 	}
 	catch (std::exception &ex)
 	{
