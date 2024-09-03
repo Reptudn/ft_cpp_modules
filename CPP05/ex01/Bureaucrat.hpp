@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:06:03 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 10:29:52 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/03 10:32:15 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ class Bureaucrat
 			public:
 				const char* what() const throw();
 		};
-
+		void signForm();
 };
 
 std::ostream &operator<<(std::ostream &stream, const Bureaucrat &crat);
