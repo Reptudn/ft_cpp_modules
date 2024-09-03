@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 14:58:26 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/03 16:48:47 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void AForm::beSigned(const Bureaucrat &crat)
 	if (crat.getGrade() > this->_sign_grade)
 		throw AForm::GradeTooLowException();
 	_signed = true;
+	target = crat.getName();
 }
 
 std::ostream &operator<<(std::ostream &stream, const AForm &form)
@@ -81,6 +82,11 @@ std::ostream &operator<<(std::ostream &stream, const AForm &form)
 
 void AForm::execute(Bureaucrat const &exec) const
 {
+	if (!isSigned())
+	{
+		std::cout << "Cannot execute unsigned Form!" << std::endl;
+		return ;
+	}
 	if (exec.getGrade() > _execute_grade)
 		throw AForm::GradeTooLowException();
 	std::cout << "Executed empty Form and nothing happens" << std::endl;
