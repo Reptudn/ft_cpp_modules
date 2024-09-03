@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:06:03 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 13:26:55 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/03 14:55:47 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <exception>
 #include <iostream>
 #include <ostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -45,7 +45,8 @@ class Bureaucrat
 			public:
 				const char* what() const throw();
 		};
-		void signForm(Form &form);
+		void signForm(AForm &form);
+		void executeForm(AForm const &form);
 };
 
 std::ostream &operator<<(std::ostream &stream, const Bureaucrat &crat);

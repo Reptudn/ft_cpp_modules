@@ -6,11 +6,12 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 10:32:04 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/03 13:49:08 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : _name("random"), _grade(150)
 {
@@ -22,6 +23,7 @@ Bureaucrat::Bureaucrat(int grade) : _name("random")
 	std::cout << "Bureaucrat default constructor called" << std::endl;
 	if (grade > 150) throw Bureaucrat::GradeTooHighException();
 	else if (grade < 1) throw Bureaucrat::GradeTooLowException();
+	_grade = grade;
 	std::cout << "Bureaucrat construction complete." << std::endl;
 }
 
@@ -30,6 +32,7 @@ Bureaucrat::Bureaucrat(int grade, std::string name) : _name(name)
 	std::cout << "Bureaucrat default constructor called" << std::endl;
 	if (grade > 150) throw Bureaucrat::GradeTooHighException();
 	else if (grade < 1) throw Bureaucrat::GradeTooLowException();
+	_grade = grade;
 	std::cout << "Bureaucrat construction complete." << std::endl;
 }
 
@@ -63,7 +66,7 @@ int Bureaucrat::getGrade() const
 
 std::ostream &operator<<(std::ostream &stream, const Bureaucrat &crat)
 {
-	return (stream << crat.getName() + ", bureaucrat grade" << crat.getGrade());
+	return (stream << crat.getName() + ", bureaucrat grade " << crat.getGrade());
 }
 
 const char *Bureaucrat::GradeTooLowException::what(void) const throw()
@@ -86,4 +89,28 @@ void Bureaucrat::decrementGrade()
 {
 	if (_grade + 1 > 150) throw Bureaucrat::GradeTooHighException();
 	else _grade++;
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+	std::cout << getName() << " is trying to sign " << form.getName() << std::endl;
+	try
+	{
+		if (form.isSigned())
+		{
+			std::cout << "Form " + form.getName() << " is already signed" << std::endl;
+			return;
+		}
+
+		form.beSigned(*this);
+		std::cout << _name + " signed " + form.getName() << std::endl;
+	}
+	catch(Form::GradeTooLowException &e)
+	{
+		std::cout << _name + " couldn't sign " + form.getName() + ", because " << e.what() << std::endl;
+	}
+	catch(Form::GradeTooHighException &e)
+	{
+		std::cout << _name + " couldn't sign " + form.getName() + ", because " << e.what() << std::endl;
+	}
 }

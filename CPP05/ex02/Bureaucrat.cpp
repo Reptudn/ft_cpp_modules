@@ -6,11 +6,12 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 13:49:15 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/03 14:55:34 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() : _name("random"), _grade(150)
 {
@@ -88,4 +89,28 @@ void Bureaucrat::decrementGrade()
 {
 	if (_grade + 1 > 150) throw Bureaucrat::GradeTooHighException();
 	else _grade++;
+}
+
+void Bureaucrat::signForm(AForm &form)
+{
+	std::cout << getName() << " is trying to sign " << form.getName() << std::endl;
+	try
+	{
+		if (form.isSigned())
+		{
+			std::cout << "Form " + form.getName() << " is already signed" << std::endl;
+			return;
+		}
+
+		form.beSigned(*this);
+		std::cout << _name + " signed " + form.getName() << std::endl;
+	}
+	catch(AForm::GradeTooLowException &e)
+	{
+		std::cout << _name + " couldn't sign " + form.getName() + ", because " << e.what() << std::endl;
+	}
+	catch(AForm::GradeTooHighException &e)
+	{
+		std::cout << _name + " couldn't sign " + form.getName() + ", because " << e.what() << std::endl;
+	}
 }
