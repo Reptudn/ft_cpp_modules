@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 13:05:56 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 13:18:53 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include "AForm.hpp"
+#include "PresedentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-class RobotomyRequestForm : public AForm
+class Intern
 {
 	public:
-		RobotomyRequestForm();
-		RobotomyRequestForm(std::string target);
-		~RobotomyRequestForm();
-		RobotomyRequestForm(const RobotomyRequestForm &form);
-		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
-		void execute(Bureaucrat const &executor) const;
+		Intern();
+		~Intern();
+		Intern(const Intern &intern);
+		Intern &operator=(const Intern &intern);
+		AForm *makeForm(std::string form_name, std::string target);
 };
