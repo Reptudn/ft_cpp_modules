@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*   PresedentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 10:43:47 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 10:43:39 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ShrubberyCreationForm.hpp"
-#include <fstream>
+#include "PresedentialPardonForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5)
 {
 	this->target = "";
-	std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
+	std::cout << "PresidentialPardonForm default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other)
 {
 	this->target = other.target;
-	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
+	std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
 }
 
-ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
 {
-	std::cout << "ShrubberyCreationForm assignment overload called" << std::endl;
+	std::cout << "PresidentialPardonForm assignment overload called" << std::endl;
 	if (this == &other) return *this;
 	this->target = std::string(other.target);
 	// TODO: set other values
 	return *this;
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
 	if (!this->isSigned())
 	{
@@ -47,8 +46,5 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		throw AForm::GradeTooLowException();
 	}
 	
-	std::fstream tree_file;
-	tree_file.open(this->target + "_shrubbery", std::fstream::out);
-	tree_file << "imagine ascii tree here!" << std::endl;
-	tree_file.close();
+	std::cout << target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }

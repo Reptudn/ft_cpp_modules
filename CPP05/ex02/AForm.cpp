@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 16:48:47 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 10:27:12 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,3 +101,8 @@ const char *AForm::GradeTooHighException::what(void) const throw()
 {
 	return ("Grade too high for the form!");
 };
+
+void AForm::setSigned(bool sign)
+{
+	this->_signed = sign;
+}

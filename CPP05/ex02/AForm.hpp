@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 16:39:43 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 10:26:23 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ class AForm
 		int getSignGrade() const;
 		int getExecuteGrade() const;
 		bool isSigned() const;
+		void setSigned(bool sign);
 		virtual void execute(Bureaucrat const &executor) const;
 };
 

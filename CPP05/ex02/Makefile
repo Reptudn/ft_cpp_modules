@@ -1,5 +1,5 @@
-SRC := main.cpp Bureaucrat.cpp Form.cpp PresedentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
-HEADERS := Bureaucrat.hpp Form.hpp PresedentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
+SRC := main.cpp Bureaucrat.cpp AForm.cpp PresedentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+HEADERS := Bureaucrat.hpp AForm.hpp PresedentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
 NAME := bureaucrat
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++98
