@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 10:43:39 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 10:48:28 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,9 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 	}
 	
 	std::cout << target << " has been pardoned by Zafod Beeblebrox" << std::endl;
+}
+
+PresidentialPardonForm::~PresidentialPardonForm()
+{
+	std::cout << "PresidentialPardonForm destructor called" << std::endl;
 }

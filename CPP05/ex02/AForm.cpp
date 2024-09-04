@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 10:27:12 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 10:48:16 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 AForm::AForm() : _name("Form"), _signed(false), _sign_grade(100), _execute_grade(50)
 {
-	std::cout << "Form default constructor called" << std::endl;
+	std::cout << "AForm default constructor called" << std::endl;
 }
 
 AForm::AForm(const AForm &form) : _name(std::string(form._name)), _signed(form._signed), _sign_grade(form._sign_grade), _execute_grade(form._execute_grade)
 {
-	std::cout << "Form copy constructor called" << std::endl;
+	std::cout << "AForm copy constructor called" << std::endl;
 }
 
 AForm::AForm(std::string name, int sign_grade, int execute_grade) : _name(name), _signed(false), _sign_grade(sign_grade), _execute_grade(execute_grade)
 {
-	std::cout << "Form custom Form construcor called" << std::endl;
+	std::cout << "AForm custom Form construcor called" << std::endl;
 
 	if (sign_grade < 1 || execute_grade < 1) throw AForm::GradeTooHighException();
 	if (sign_grade > 150 || execute_grade > 150) throw AForm::GradeTooLowException();
@@ -32,12 +32,12 @@ AForm::AForm(std::string name, int sign_grade, int execute_grade) : _name(name),
 
 AForm::~AForm()
 {
-	std::cout << "Form destructor called" << std::endl;
+	std::cout << "AForm destructor called" << std::endl;
 }
 
 AForm &AForm::operator=(const AForm &form)
 {
-	std::cout << "Form assignment oeprator called" << std::endl;
+	std::cout << "AForm assignment oeprator called" << std::endl;
 	if (this == &form) return *this;
 	_signed = form._signed;
 	return *this;
@@ -73,7 +73,7 @@ void AForm::beSigned(const Bureaucrat &crat)
 
 std::ostream &operator<<(std::ostream &stream, const AForm &form)
 {
-	stream << "Form Name: " << form.getName() << std::endl;
+	stream << "AForm Name: " << form.getName() << std::endl;
 	stream << "Currently signed? " << (form.isSigned() ? "Yes" : "No") << std::endl;
 	stream << "Grade needed to sign: " << form.getSignGrade() << std::endl;
 	stream << "Grade needed to execute: " << form.getExecuteGrade() << std::endl;
@@ -84,12 +84,12 @@ void AForm::execute(Bureaucrat const &exec) const
 {
 	if (!isSigned())
 	{
-		std::cout << "Cannot execute unsigned Form!" << std::endl;
+		std::cout << "Cannot execute unsigned AForm!" << std::endl;
 		return ;
 	}
 	if (exec.getGrade() > _execute_grade)
 		throw AForm::GradeTooLowException();
-	std::cout << "Executed empty Form and nothing happens" << std::endl;
+	std::cout << "Executed empty AForm and nothing happens" << std::endl;
 }
 
 const char *AForm::GradeTooLowException::what(void) const throw()
