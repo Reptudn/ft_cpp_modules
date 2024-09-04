@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 13:22:56 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 15:20:13 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ Intern &Intern::operator=(const Intern &intern)
 	return *this;
 }
 
+// TODO: remove if else and use something else here
 AForm *Intern::makeForm(std::string form_name, std::string target)
 {
 	if (form_name == "presidential pardon")
