@@ -32,12 +32,12 @@ class AForm
 		AForm(const AForm &form);
 		AForm(std::string name, int sign_grade, int execute_grade);
 		AForm &operator=(const AForm &form);
-		class GradeTooHighException : std::exception
+		class GradeTooHighException : public std::exception
 		{
 			public:
 				const char* what() const throw();
 		};
-		class GradeTooLowException : std::exception
+		class GradeTooLowException : public std::exception
 		{
 			public:
 				const char* what() const throw();
