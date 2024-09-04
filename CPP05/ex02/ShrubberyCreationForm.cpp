@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 10:48:36 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 10:57:49 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,13 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	
 	std::fstream tree_file;
 	tree_file.open(this->target + "_shrubbery", std::fstream::out);
-	tree_file << "imagine ascii tree here!" << std::endl;
+	tree_file << "         #o#\n";
+	tree_file << "       ####o#\n";
+	tree_file << "      #o# \\#|_#,#\n";
+	tree_file << "     ###\\ |/   #o#\n";
+	tree_file << "      # {}{      #\n";
+	tree_file << "         }{{\n";
+	tree_file << "        ,'  `" << std::endl;
 	tree_file.close();
 }
 
