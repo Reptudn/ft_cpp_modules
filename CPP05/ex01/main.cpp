@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:30:44 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/03 13:56:55 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 16:00:32 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,6 @@ int main()
 
 		b.signForm(form2);
 
-	}
-	catch (Bureaucrat::GradeTooHighException &ex)
-	{
-		std::cout << "Grade too high error: " << ex.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooLowException &ex)
-	{
-		std::cout << "Grade too low error: " << ex.what() << std::endl;
-	}
-	catch (Form::GradeTooLowException &ex)
-	{
-		std::cout << "Form grade too low error: " << ex.what() << std::endl;
-	}
-	catch (Form::GradeTooHighException &ex)
-	{
-		std::cout << "Form grade too high error: " << ex.what() << std::endl;
 	}
 	catch (std::exception &ex)
 	{

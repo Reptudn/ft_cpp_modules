@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 15:20:13 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 16:24:58 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+#include "AForm.hpp"
+#include "PresedentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include <iterator>
 
 Intern::Intern()
 {
@@ -35,27 +40,35 @@ Intern &Intern::operator=(const Intern &intern)
 	return *this;
 }
 
-// TODO: remove if else and use something else here
+AForm *createShrubbery(std::string target)
+{
+	return new ShrubberyCreationForm(target);
+}
+
+AForm *createRobotomy(std::string target)
+{
+	return new RobotomyRequestForm(target);
+}
+
+AForm *createPresedential(std::string target)
+{
+	return new PresidentialPardonForm(target);
+}
+
+typedef AForm* (*FormCreator)(std::string);
+
+std::string options[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+FormCreator formCreators[] = {createPresedential, createRobotomy, createShrubbery};
+
 AForm *Intern::makeForm(std::string form_name, std::string target)
 {
-	if (form_name == "presidential pardon")
+	for (int i = 0; i < 3; i++)
 	{
-		std::cout << "Intern creates " << form_name << " form" << std::endl;
-		return new PresidentialPardonForm(target);
+		if (options[i] == form_name)
+		{
+			std::cout << "Intern creates " + form_name + " form" << std::endl;
+			return formCreators[i](target);
+		}
 	}
-	else if (form_name == "robotomy request")
-	{
-		std::cout << "Intern creates " << form_name << " form" << std::endl;
-		return new RobotomyRequestForm(target);
-	}
-	else if (form_name == "shrubbery creation")
-	{
-		std::cout << "Intern creates " << form_name << " form" << std::endl;
-		return new ShrubberyCreationForm(target);
-	}
-	else
-	{
-		std::cout << "Intern cannot create " << form_name << " form" << std::endl;
-		return nullptr;
-	}
+	return nullptr;
 }

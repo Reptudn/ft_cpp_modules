@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:30:44 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 10:54:19 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/04 16:06:39 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int main()
 		Bureaucrat a = Bureaucrat(1, "Peter");
 		Bureaucrat b = Bureaucrat(100, "Hans");
 
-		PresidentialPardonForm p = PresidentialPardonForm();
-		RobotomyRequestForm r = RobotomyRequestForm();
-		ShrubberyCreationForm s = ShrubberyCreationForm();
+		PresidentialPardonForm p = PresidentialPardonForm("42");
+		RobotomyRequestForm r = RobotomyRequestForm("Optimus Prime");
+		ShrubberyCreationForm s = ShrubberyCreationForm("Field");
 
 		a.signForm(p);
 		p.execute(a);
@@ -40,22 +40,6 @@ int main()
 		a.signForm(s);
 		s.execute(a);
 
-	}
-	catch (Bureaucrat::GradeTooHighException &ex)
-	{
-		std::cout << "Grade too high error: " << ex.what() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooLowException &ex)
-	{
-		std::cout << "Grade too low error: " << ex.what() << std::endl;
-	}
-	catch (AForm::GradeTooLowException &ex)
-	{
-		std::cout << "Form grade too low error: " << ex.what() << std::endl;
-	}
-	catch (AForm::GradeTooHighException &ex)
-	{
-		std::cout << "Form grade too high error: " << ex.what() << std::endl;
 	}
 	catch (std::exception &ex)
 	{

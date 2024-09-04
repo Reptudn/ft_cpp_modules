@@ -2,7 +2,7 @@ SRC := main.cpp Bureaucrat.cpp AForm.cpp PresedentialPardonForm.cpp RobotomyRequ
 HEADERS := Bureaucrat.hpp AForm.hpp PresedentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
 NAME := bureaucrat
 CXX := c++
-FLAGS := -Wall -Wextra -Werror -std=c++98
+FLAGS := -Wall -Wextra -Werror -std=c++11
 OBJ := $(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)

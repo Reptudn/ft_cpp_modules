@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	}
 
 	std::fstream replacefile;
-	replacefile.open(filename + ".replace", std::fstream::out);
+	replacefile.open((filename + ".replace").c_str(), std::fstream::out);
 	if (!replacefile)
 	{
 		std::cerr << "Error: could not create replace file" << std::endl;
