@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 16:05:15 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/05 12:49:50 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	
 	std::fstream tree_file;
 	tree_file.open((this->target + "_shrubbery").c_str(), std::fstream::out);
+	if (tree_file.fail() || tree_file.is_open() == false)
+	{
+		std::cout << "Error: " << strerror(errno) << std::endl;
+		return;
+	}
 
 	tree_file << "         #o#\n";
 	tree_file << "       ####o#\n";
