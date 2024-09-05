@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:13:52 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/04 16:33:59 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/05 09:29:35 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ AForm *Intern::makeForm(std::string form_name, std::string target)
 			return formCreators[i](target);
 		}
 	}
+	std::cout << "Intern can't find a form called: " << form_name << std::endl;
 	return nullptr;
 }
