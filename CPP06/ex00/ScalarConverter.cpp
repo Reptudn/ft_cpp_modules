@@ -6,7 +6,7 @@
 /*   By: jkauker <jkauker@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 09:36:11 by jkauker           #+#    #+#             */
-/*   Updated: 2024/09/09 10:12:18 by jkauker          ###   ########.fr       */
+/*   Updated: 2024/09/09 12:24:06 by jkauker          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,24 +139,15 @@ void ScalarConverter::convert(std::string val)
 	if (!isInBounds(val, "int"))
 		std::cout << "int: impossible" << std::endl;
 	else
-	{
-		int i = std::stoi(val);
-		std::cout << "int: " << i << std::endl;
-	}
+		std::cout << "int: " << std::stoi(val) << std::endl;
 
 	if (!isInBounds(val, "float"))
 		std::cout << "float: impossible" << std::endl;
 	else
-	{
-		float f = std::stof(val);
-		std::cout << "float: " << f << "f" << std::endl;
-	}
+		std::cout << "float: " << std::showpoint << std::stof(val) << "f" << std::endl;
 	
 	if (!isInBounds(val, "double"))
 		std::cout << "double: impossible" << std::endl;
 	else
-	{
-		double d = std::stod(val);
-		std::cout << "double: " << d << std::endl;
-	}
+		std::cout << "double: " << std::showpoint << std::stod(val) << std::endl;
 }
