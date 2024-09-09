@@ -1,6 +1,6 @@
 SRC := main.cpp
-HEADERS := iter.hpp
-NAME := iter
+HEADERS := Array.hpp
+NAME := array
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++11
 OBJ := $(SRC:.cpp=.o)

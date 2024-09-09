@@ -1,14 +1,28 @@
 #pragma once
 
+#include <iostream>
+
 template <typename T>
-void magic(T &t)
+void increment(T &element)
 {
-	t += 5;
+	element++;
 }
 
 template <typename T>
-void iter(T *arr, unsigned int len, void (* function)(T *element))
+void decrement(T &element)
 {
-	for (int i = 0; i < len; i++)
-		func(arr[i]);
+	element--;
+}
+
+template <typename T>
+void print(T &element)
+{
+	std::cout << element << std::endl;
+}
+
+template <typename T>
+void iter(T *arr, unsigned int len, void (* function)(T &element))
+{
+	for (unsigned int i = 0; i < len; i++)
+		function(arr[i]);
 }
