@@ -1,6 +1,6 @@
-SRC := main.cpp ScalarConversion.cpp
-HEADERS := ScalarConversion.hpp
-NAME := bureaucrat
+SRC := main.cpp ScalarConverter.cpp
+HEADERS := ScalarConverter.hpp
+NAME := convert
 CXX := c++
 FLAGS := -Wall -Wextra -Werror -std=c++11
 OBJ := $(SRC:.cpp=.o)
