@@ -1,8 +1,6 @@
 #include "Array.hpp"
-#include <cstddef>
 #include <exception>
 #include <string>
-// #include <iostream>
 
 int main()
 {
@@ -27,12 +25,12 @@ int main()
 		}
 	}
 	
+	std::cout << "-------" << std::endl;
+
 	{
 		Array<std::string> strs(10);
 
-		// TODO: is auto allowed?
-		// auto means automatic type deduction
-		for (auto &elem : strs)
+		for (std::string &elem : strs)
 			elem = "Hello";
 
 		for (std::size_t i = 0; i < strs.size(); i++)
@@ -47,6 +45,27 @@ int main()
 			std::cerr << "Ooops! " << e.what() << std::endl;
 		}
 
+	}
+
+	std::cout << "-------" << std::endl;
+
+	{
+		Array<int> ints(10);
+
+		for (std::size_t i = 0; i < ints.size(); i++)
+			ints[i] = i;
+
+		Array<int> ints2(ints);
+
+		for (int &i : ints)
+			i = 1;
+
+		for (int i : ints)
+			std::cout << i << std::endl;
+		std::cout << std::endl;
+
+		for (int i : ints2)
+			std::cout << i << std::endl;
 	}
 
 	return 0;

@@ -11,15 +11,16 @@ class Array
 		std::size_t _size;
 		T *_array;
 	public:
-		Array() : _size(0), _array(new T[0]) { };
+		Array() : _size(0), _array(nullptr) { };
 		Array(std::size_t size) : _size(size), _array(new T[size]) { };
 		Array(const Array &other)
 		{
-			if (_array) delete [] _array;
 			_size = other.size();
 			_array = new T[_size];
-			for (std::size_t i = 0; i < _size; i++)
+			for (std::size_t i = 0; i < _size && _array; i++)
+			{
 				_array[i] = other._array[i];
+			}
 		};
 		~Array() { if (_array) delete [] _array; };
 		std::size_t size() const {	return _size; };
@@ -43,7 +44,7 @@ class Array
 			if (_array) delete [] _array;
 			_size = other.size();
 			_array = new T[_size];
-			for (std::size_t i = 0; i < _size; i++)
+			for (std::size_t i = 0; i < _size && _array; i++)
 				_array[i] = other._array[i];
 			return *this;
 		};

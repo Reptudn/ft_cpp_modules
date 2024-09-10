@@ -49,5 +49,13 @@ int main()
 		::iter(f, 3, ::print);
 	}
 
+	std::cout << std::endl;
+
+	{
+		std::string f[] = { "apple", "banana", "se coconut nut is a big big nut" };
+
+		::iter(f, 3, ::print);
+	}
+
 	return 0;
 }
