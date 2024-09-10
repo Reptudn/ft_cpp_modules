@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <exception>
 #include <iostream>
 
@@ -7,7 +8,7 @@ template <typename T>
 class Array
 {
 	private:
-		unsigned int _size;
+		std::size_t _size;
 		T *_array;
 	public:
 		Array() : _size(0), _array(new T[0]) { };
@@ -17,17 +18,11 @@ class Array
 			if (_array) delete [] _array;
 			_size = other.size();
 			_array = new T[_size];
-			for (unsigned int i = 0; i < _size; i++)
+			for (std::size_t i = 0; i < _size; i++)
 				_array[i] = other._array[i];
 		};
-		~Array()
-		{ 
-			if (_array) delete [] _array;
-		};
-		unsigned int size() const
-		{
-			return _size;
-		};
+		~Array() { if (_array) delete [] _array; };
+		std::size_t size() const {	return _size; };
 		class ArrayIndexOutOfBounds : public std::exception
 		{
 			public:
@@ -36,7 +31,7 @@ class Array
 					return "Array index out of bounds";
 				};
 		};
-		T& operator[](unsigned int index) const
+		T& operator[](std::size_t index) const
 		{
 			if (index >= _size)
 				throw ArrayIndexOutOfBounds();
@@ -48,8 +43,12 @@ class Array
 			if (_array) delete [] _array;
 			_size = other.size();
 			_array = new T[_size];
-			for (unsigned int i = 0; i < _size; i++)
+			for (std::size_t i = 0; i < _size; i++)
 				_array[i] = other._array[i];
 			return *this;
 		};
+		T *begin() { return _array; }
+		const T *begin() const { return _array; }
+		T *end() { return _array + _size; }
+		const T *end() const { return _array + _size; }
 };
