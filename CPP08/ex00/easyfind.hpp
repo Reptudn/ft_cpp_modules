@@ -5,10 +5,8 @@
 template <typename T>
 T &easyfind(T &container, int value)
 {
-	for (typename T::iterator it = container.begin(); it != container.end(); it++)
-	{
-		if (*it == value)
-			return *it;
-	}
-	throw std::exception();
+	typename T::iterator it = std::find(container.begin(), container.end(), value);
+	if (it == container.end())
+		throw std::exception();
+	return *it;
 }
