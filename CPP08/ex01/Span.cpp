@@ -1,4 +1,5 @@
 #include "Span.hpp"
+#include <iostream>
 
 Span::Span() : _n(0) { }
 
@@ -24,10 +25,24 @@ void Span::addNumber(int n)
 	_set.insert(n);
 }
 
+void Span::addNumber()
+{
+	
+}
+
+// void Span::addRange(int start, int end)
+// {
+// 	while(start < end)
+// 	{
+// 		if (_set.size() >= _n) throw Span::SpanMaxReachedException();
+// 		_set.insert(start++);
+// 	}
+// }
+
 int Span::longestSpan() const
 {
 	if (_set.size() < 2) throw SpanNoSpanException();
-	return (*_set.end() - *(--_set.begin()));
+	return (*(--_set.end()) - *_set.begin());
 }
 
 int Span::shortestSpan() const
@@ -40,7 +55,9 @@ int Span::shortestSpan() const
 
 	for (; next != _set.end(); ++curr, ++next)
 	{
-		int span = *next + *curr;
+		int nexti = *next;
+		int curri = *curr;
+		int span = (nexti < curri ? curri : nexti) - (nexti < curri ? nexti : curri);
 		if (span < shortest)
 			shortest = span;
 	}

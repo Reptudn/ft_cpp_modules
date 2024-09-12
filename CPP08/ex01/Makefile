@@ -2,7 +2,7 @@ SRC := main.cpp Span.cpp
 HEADERS := Span.hop
 NAME := spam
 CXX := c++
-FLAGS := -Wall -Wextra -Werror -std=c++11
+FLAGS := -Wall -Wextra -Werror -std=c++17 # cpp 17 because of one feature i added
 OBJ := $(SRC:.cpp=.o)
 
 $(NAME): $(OBJ)
