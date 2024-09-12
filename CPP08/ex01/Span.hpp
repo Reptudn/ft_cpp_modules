@@ -15,7 +15,14 @@ class Span
 		Span(const Span &span);
 		Span &operator=(const Span &span);
 		void addNumber(int n);
-		void addNumber();
+		template <typename Iterator>
+		void addNumbers(Iterator start, Iterator end)
+		{
+			while (_set.size() < _n)
+				_set.insert((*start)++);
+			if (start != end)
+				throw SpanMaxReachedException();
+		}
 		// void addRange(int start, int end);
 		// template<typename... Ints>
 		// void addMultiple(Ints... integers) { try { (addNumber(integers), ...); } catch (std::exception &e){ throw Span::SpanMaxReachedException(); } }; // CPP 17 feature
