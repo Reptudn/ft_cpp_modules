@@ -25,11 +25,6 @@ void Span::addNumber(int n)
 	_set.insert(n);
 }
 
-void Span::addNumber()
-{
-	
-}
-
 // void Span::addRange(int start, int end)
 // {
 // 	while(start < end)
