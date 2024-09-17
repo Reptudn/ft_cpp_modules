@@ -1,12 +1,13 @@
-#include <stack>
+#include <vector>
 #include <iostream>
 
 
 class RPN
 {
 	private:
-		std::stack<std::string> _operator;
-		std::stack<int> _stack;
+		std::vector<std::string> stack;
+
+		std::vector<std::string>::const_iterator getFirstOperator() const;
 	public:
 		RPN(std::string polish);
 		~RPN();

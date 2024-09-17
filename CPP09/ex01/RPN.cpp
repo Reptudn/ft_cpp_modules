@@ -1,9 +1,11 @@
 #include "RPN.hpp"
+#include <algorithm>
+#include <exception>
+#include <iostream>
+#include <string>
 
 RPN::RPN(std::string polish)
 {
-	std::stack<std::string> parts;
-
 	for (char c : polish)
 	{
 		if (std::isspace(c) || std::isdigit(c) || c == '+' || c == '-' || c == '*' || c == '/' || c == '%')
@@ -13,22 +15,33 @@ RPN::RPN(std::string polish)
 
 	while (polish.find(' ') != std::string::npos)
 	{
-		parts.push(polish.substr(0, polish.find(' ')));
+		stack.push_back(polish.substr(0, polish.find(' ')));
 		polish = polish.substr(polish.find(' ') + 1);
 	}
-	parts.push(polish);
+	stack.push_back(polish);
 
-	while (parts.size() > 0)
+	auto it = stack.begin();
+	int numbers = 0;
+	int operators = 0;
+	while (it != stack.end())
 	{
-		std::string str = parts.top();
-		parts.pop();
-		if (str == "+" || str == "-" || str == "*" || str == "/" || str == "%")
-			_operator.push(str);
-		else
-			_stack.push(std::stoi(str));
+		std::string line = *it;
+		try
+		{
+			std::stoi(line);
+			numbers++;
+		}
+		catch (std::exception &e) {
+			(void)e;
+			operators++;
+		}
+		it++;
 	}
 
-	if (_stack.size() != _operator.size() + 1)
+	std::cout << "numbers: " << numbers << std::endl;
+	std::cout << "operators: " << operators << std::endl;
+ 
+	if (numbers != operators + 1)
 		throw std::runtime_error("Error: Operators and numbers don't match");
 
 }
@@ -37,30 +50,44 @@ RPN::~RPN()
 {
 }
 
+std::vector<std::string>::const_iterator RPN::getFirstOperator() const
+{
+	auto it = stack.begin();
+	while (it != stack.end())
+	{
+		std::string line = *it;
+		if (line == "+" || line == "-" || line == "*" || line == "/" || line == "%")
+			return it;
+		it++;
+	}
+	return stack.end();
+}
+
 void RPN::calculate()
 {
-	int number;
-	while (_operator.size() > 0)
+	int result = 0;
+
+	while (stack.size() > 1)
 	{
-		std::string op = _operator.top();
-		_operator.pop();
+		auto op = getFirstOperator();
+		if (op == stack.end())
+			break;
+		int a = std::stoi(*(op - 2));
+		int b = std::stoi(*(op - 1));
 
-		int a = _stack.top();
-		_stack.pop();
-		int b = _stack.top();
-		_stack.pop();
-
-		if (op == "+")
-			number = a + b;
-		else if (op == "-")
-			number = a - b;
-		else if (op == "*")
-			number = a * b;
-		else if (op == "/")
-			number = a / b;
-		else if (op == "%")
-			number = a % b;
-		_stack.push(number);
+		if (*op == "+") result = a + b;
+		else if (*op == "-") result = a - b;
+		else if (*op == "*") result = a * b;
+		else if (*op == "/") result = a / b;
+		else if (*op == "%") result = a % b;
+		else 
+		{
+			std::cout << "non op found" << std::endl;
+		}
+		std::cout << a << " " + *op + " " << b <<" = " << result << std::endl;
+		std::replace(stack.begin(), stack.end(), *op, std::to_string(result));
+		stack.erase(op - 2, op - 1);
 	}
-	std::cout << _stack.top() << std::endl;
+
+	std::cout << result << std::endl;
 }
