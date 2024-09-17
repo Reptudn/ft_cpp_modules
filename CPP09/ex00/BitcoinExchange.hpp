@@ -2,13 +2,15 @@
 
 #include <filesystem>
 #include <iostream>
-#include <map>
+#include <vector>
+#include <ctime>
+#include <utility>
 
 class BitcoinExchange
 {
 	private:
 		std::string _filename;
-		std::map<std::string, float> _data;
+		std::vector<std::pair<std::tm, float>> _data;
 
 		bool isFileValid() const;
 	public:
