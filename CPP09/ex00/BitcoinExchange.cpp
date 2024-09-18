@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <regex>
+#include <iomanip>
 
 BitcoinExchange::BitcoinExchange(std::string filename)
 {
