@@ -85,9 +85,9 @@ void RPN::calculate()
 			std::cout << "non op found" << std::endl;
 		}
 		std::cout << a << " " + *op + " " << b <<" = " << result << std::endl;
-		std::replace(stack.begin(), stack.end(), *op, std::to_string(result));
-		stack.erase(op - 2, op - 1);
+		stack.erase(op -2, op + 1);
+		stack.insert(op - 2, std::to_string(result));
 	}
 
-	std::cout << result << std::endl;
+	std::cout << "Result => " << result << std::endl;
 }
