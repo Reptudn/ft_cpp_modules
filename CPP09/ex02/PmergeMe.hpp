@@ -7,8 +7,9 @@
 class PmergeMe
 {
 	private:
-		int *arr;
+		std::list<int> arr;
 		std::list<int> list;
+		void johnson(unsigned int ind);
 		void containerSort();
 		void cringeSort();
 	public:
