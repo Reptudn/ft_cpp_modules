@@ -67,7 +67,7 @@ void PmergeMe::showSortResults()
 		auto end = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
-		std::cout << "Time to process a range of " << vec.size() << " elements with std::list : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
+		std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
 	}
 
 	if (vec.size() == list.size())
