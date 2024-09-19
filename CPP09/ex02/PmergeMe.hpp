@@ -9,7 +9,8 @@ class PmergeMe
 	private:
 		std::list<int> arr;
 		std::list<int> list;
-		void johnson(unsigned int ind);
+		void binarySearchInsert(int num, std::list<int> &list);
+		void johnson();
 		void containerSort();
 		void cringeSort();
 	public:

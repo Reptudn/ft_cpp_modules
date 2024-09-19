@@ -64,39 +64,73 @@ void PmergeMe::cringeSort()
 {
 	auto start = std::chrono::high_resolution_clock::now();
 
-
 	// This is the cringe sort
-	johnson(0);
-
+	johnson();
 
 	auto end = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 	std::cout << "Time to process a range of 3000 elements with std::list : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
 }
 
-void PmergeMe::johnson(unsigned int ind)
+void PmergeMe::binarySearchInsert(int num, std::list<int> &list)
+{
+	auto it = list.begin();
+	auto second = --list.end();
+	auto middle = list.begin();
+	std::advance(it, list.size() / 2);
+
+	do
+	{
+		if (num < *middle)
+		{
+			if (middle == list.begin())
+			{
+				list.push_front(num);
+				return;
+			}
+			second = middle;
+			middle = it;
+			std::advance(it, std::distance(middle - it) / 2);
+		}
+		else
+		{
+			if (middle == --list.end())
+			{
+				list.push_back(num);
+				return;
+			}
+			it = middle;
+			middle = it;
+			std::advance(it, std::distance(middle - second) / 2);
+		}
+	} while (it != middle || second != middle);
+
+}
+
+void PmergeMe::johnson()
 {
 	int size = this->arr.size();
 
-	if (ind >= size || ind + 1 == size)
-		return;
-
 	std::list<std::pair<int, int>> pairs;
-	auto it = this->arr.begin();
-	for (; it != arr.end(); it++)
 	{
-		auto a = it;
-		auto b = ++it;
-		if (*a < *b)
-			pairs.push_back(std::make_pair(*a, *b));
-		else
-			pairs.push_back(std::make_pair(*b, *a));
+		auto it = this->arr.begin();
+		for (; it != this->arr.end(); it++)
+		{
+			auto a = it;
+			auto b = ++it;
+			if (*a < *b)
+				pairs.push_back(std::make_pair(*a, *b));
+			else
+				pairs.push_back(std::make_pair(*b, *a));
+		}
 	}
 
 	std::list<int> tmp;
-	for (auto it = pairs.begin(); it != pairs.end(); it++)
+	auto it = pairs.begin();
+	for (; it != pairs.end(); it++)
 	{
-		tmp.push_back(it->first);
-		tmp.push_back(it->second);
+		binarySearchInsert(it->first, tmp);
+		binarySearchInsert(it->second, tmp);
 	}
+
 }

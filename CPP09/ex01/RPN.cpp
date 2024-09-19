@@ -14,17 +14,18 @@ RPN::RPN(std::string polish)
 
 	while (polish.find(' ') != std::string::npos)
 	{
-		stack.push_back(polish.substr(0, polish.find(' ')));
+		input.push(polish.substr(0, polish.find(' ')));
 		polish = polish.substr(polish.find(' ') + 1);
 	}
-	stack.push_back(polish);
+	input.push(polish);
 
-	auto it = stack.begin();
 	int numbers = 0;
 	int operators = 0;
-	while (it != stack.end())
+	while (input.size())
 	{
-		std::string line = *it;
+		std::string line = input.top();
+		input.pop();
+		stack.push(line);
 		try
 		{
 			std::stoi(line);
@@ -34,11 +35,7 @@ RPN::RPN(std::string polish)
 			(void)e;
 			operators++;
 		}
-		it++;
 	}
-
-	std::cout << "numbers: " << numbers << std::endl;
-	std::cout << "operators: " << operators << std::endl;
  
 	if (numbers != operators + 1)
 		throw std::runtime_error("Error: Operators and numbers don't match");
@@ -49,44 +46,55 @@ RPN::~RPN()
 {
 }
 
-std::vector<std::string>::const_iterator RPN::getFirstOperator() const
-{
-	auto it = stack.begin();
-	while (it != stack.end())
-	{
-		std::string line = *it;
-		if (line == "+" || line == "-" || line == "*" || line == "/" || line == "%")
-			return it;
-		it++;
-	}
-	return stack.end();
-}
-
 void RPN::calculate()
 {
-	int result = 0;
+
+	std::stack<int> nums;
 
 	while (stack.size() > 1)
 	{
-		auto op = getFirstOperator();
-		if (op == stack.end())
-			break;
-		int a = std::stoi(*(op - 2));
-		int b = std::stoi(*(op - 1));
 
-		if (*op == "+") result = a + b;
-		else if (*op == "-") result = a - b;
-		else if (*op == "*") result = a * b;
-		else if (*op == "/") result = a / b;
-		else if (*op == "%") result = a % b;
-		else 
+		try
 		{
-			std::cout << "non op found" << std::endl;
+			int result = 0;
+			while (true)
+			{
+				try
+				{
+					int num = std::stoi(stack.top());
+					stack.pop();
+					nums.push(num);
+				}
+				catch (std::exception &e)
+				{
+					(void)e;
+					break;
+				}
+			}
+			int b = nums.top(); nums.pop();
+			int a = nums.top(); nums.pop();
+			std::string op = stack.top(); stack.pop();
+
+			std::cout << a << " " << op << " " << b << " = ";
+
+			if (op == "+") result = a + b;
+			else if (op == "-") result = a - b;
+			else if (op == "*") result = a * b;
+			else if (op == "/") result = a / b;
+			else if (op == "%") result = a % b;
+			else
+				throw std::runtime_error("Invalid character in polish notation");
+			stack.push(std::to_string(result));
+
+			std::cout << result << std::endl;
+
 		}
-		std::cout << a << " " + *op + " " << b <<" = " << result << std::endl;
-		stack.erase(op -2, op + 1);
-		stack.insert(op - 2, std::to_string(result));
+		catch (std::exception &e)
+		{
+			std::cerr << "Error: " << e.what() << std::endl;
+			return;
+		}
 	}
 
-	std::cout << "Result => " << result << std::endl;
+	std::cout << "Result => " << stack.top() << std::endl;
 }
