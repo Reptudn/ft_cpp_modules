@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <list>
 #include <algorithm>
 #include <chrono>
@@ -7,14 +8,13 @@
 class PmergeMe
 {
 	private:
-		std::list<int> arr;
+		std::vector<int> vec;
 		std::list<int> list;
-		void binarySearchInsert(int num, std::list<int> &list);
-		void johnson();
-		void containerSort();
-		void cringeSort();
+		std::vector<int> merge(const std::vector<int>& left, const std::vector<int>& right);
+		std::vector<int> fordJohnsonSort(std::vector<int> &vec);
+		int jacobus(int n);
 	public:
-		PmergeMe(char **argv, int argc);
+		PmergeMe(char **argv);
 		~PmergeMe();
 		void showSortResults();
 };

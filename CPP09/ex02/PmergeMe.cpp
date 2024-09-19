@@ -6,16 +6,15 @@
 #include <iostream>
 #include <chrono>
 
-PmergeMe::PmergeMe(char **argv, int argc)
+PmergeMe::PmergeMe(char **argv)
 {
 	for (int i = 1; argv[i]; i++)
 	{
 		try {
-			std::cout << argv[i] << std::endl;
 			int num = std::stoi(argv[i]);
 			if (num < 0)
 				throw std::runtime_error("Negative number");
-			this->arr.push_back(num);
+			this->vec.push_back(num);
 			this->list.push_back(num);
 		} catch (std::exception &e) {
 			(void)e;
@@ -29,6 +28,15 @@ PmergeMe::~PmergeMe()
 	return;
 }
 
+int PmergeMe::jacobus(int n)
+{
+	if (n == 0)
+		return 0;
+	if (n == 1)
+		return 1;
+	return jacobus(n - 1) + 2 * jacobus(n - 2);
+}
+
 void PmergeMe::showSortResults()
 {
 	auto it = this->list.begin();
@@ -40,97 +48,92 @@ void PmergeMe::showSortResults()
 	}
 	std::cout << std::endl;
 
+	{
+		auto start = std::chrono::high_resolution_clock::now();
+		this->list.sort();
+		auto end = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+		
+		std::cout << "After:\t";
+		for (auto it = this->list.begin(); it != this->list.end(); it++)
+			std::cout << *it << " ";
+		std::cout << std::endl;
+
+		std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
+	}
+	{
+		auto start = std::chrono::high_resolution_clock::now();
+		vec = fordJohnsonSort(vec);
+		auto end = std::chrono::high_resolution_clock::now();
+		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+
+		std::cout << "Time to process a range of " << vec.size() << " elements with std::list : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
+	}
+
+	if (vec.size() == list.size())
+	{
+		auto it = this->list.begin();
+		auto it2 = this->vec.begin();
+		for (; it != this->list.end(); it++, it2++)
+		{
+			if (*it != *it2)
+			{
+				std::cout << "Sort failed: Containers are not the same!" << std::endl;
+				return;
+			}
+		}
+		std::cout << "Sort succeeded: Containers are the same!" << std::endl;
+	}
+}
+
+std::vector<int> PmergeMe::merge(const std::vector<int>& left, const std::vector<int>& right) {
 	
-	this->containerSort();
-	this->cringeSort();
-}
+	std::vector<int> result;
 
-void PmergeMe::containerSort()
-{
-	auto start = std::chrono::high_resolution_clock::now();
-	this->list.sort();
-	auto end = std::chrono::high_resolution_clock::now();
-	auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-
-	std::cout << "After:\t";
-	for (auto it = this->list.begin(); it != this->list.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
-
-	std::cout << "Time to process a range of 3000 elements with std::list : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
-}
-
-void PmergeMe::cringeSort()
-{
-	auto start = std::chrono::high_resolution_clock::now();
-
-	// This is the cringe sort
-	johnson();
-
-	auto end = std::chrono::high_resolution_clock::now();
-	auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-	std::cout << "Time to process a range of 3000 elements with std::list : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
-}
-
-void PmergeMe::binarySearchInsert(int num, std::list<int> &list)
-{
-	auto it = list.begin();
-	auto second = --list.end();
-	auto middle = list.begin();
-	std::advance(it, list.size() / 2);
+	auto itLeft = left.begin();
+	auto itRight = right.begin();
 
 	do
 	{
-		if (num < *middle)
+
+		if (*itLeft < *itRight)
 		{
-			if (middle == list.begin())
-			{
-				list.push_front(num);
-				return;
-			}
-			second = middle;
-			middle = it;
-			std::advance(it, std::distance(middle - it) / 2);
+			result.push_back(*itLeft);
+			itLeft++;
 		}
 		else
 		{
-			if (middle == --list.end())
-			{
-				list.push_back(num);
-				return;
-			}
-			it = middle;
-			middle = it;
-			std::advance(it, std::distance(middle - second) / 2);
+			result.push_back(*itRight);
+			itRight++;
 		}
-	} while (it != middle || second != middle);
 
+	} while (itLeft != left.end() && itRight != right.end());
+
+	while (itLeft != left.end())
+	{
+		result.push_back(*itLeft);
+		itLeft++;
+	}
+
+	while (itRight != right.end())
+	{
+		result.push_back(*itRight);
+		itRight++;
+	}
+
+	return result;
 }
 
-void PmergeMe::johnson()
+std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 {
-	int size = this->arr.size();
+	if (vec.size() <= 1)
+		return vec;
 
-	std::list<std::pair<int, int>> pairs;
-	{
-		auto it = this->arr.begin();
-		for (; it != this->arr.end(); it++)
-		{
-			auto a = it;
-			auto b = ++it;
-			if (*a < *b)
-				pairs.push_back(std::make_pair(*a, *b));
-			else
-				pairs.push_back(std::make_pair(*b, *a));
-		}
-	}
+	std::vector<int> left(vec.begin(), vec.begin() + vec.size() / 2);
+	std::vector<int> right(vec.begin() + vec.size() / 2, vec.end());
+	
+	left = fordJohnsonSort(left);
+	right = fordJohnsonSort(right);
 
-	std::list<int> tmp;
-	auto it = pairs.begin();
-	for (; it != pairs.end(); it++)
-	{
-		binarySearchInsert(it->first, tmp);
-		binarySearchInsert(it->second, tmp);
-	}
-
+	return merge(left, right);
 }

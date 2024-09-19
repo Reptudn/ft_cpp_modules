@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 
 	try
 	{
-		PmergeMe pmm(argv, argc);
+		PmergeMe pmm(argv);
 		pmm.showSortResults();
 	}
 	catch (std::exception &e) {
