@@ -12,7 +12,8 @@ class PmergeMe
 		std::list<int> list;
 		std::vector<int> merge(const std::vector<int>& left, const std::vector<int>& right);
 		std::vector<int> fordJohnsonSort(std::vector<int> &vec);
-		int jacobus(int n);
+		std::vector<int> newFordJohnsonSort(std::vector<int> &vec);
+		int jacobthal(int n);
 	public:
 		PmergeMe(char **argv);
 		~PmergeMe();

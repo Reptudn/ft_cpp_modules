@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 #include <chrono>
+#include <utility>
+#include <vector>
 
 PmergeMe::PmergeMe(char **argv)
 {
@@ -28,13 +30,13 @@ PmergeMe::~PmergeMe()
 	return;
 }
 
-int PmergeMe::jacobus(int n)
+int PmergeMe::jacobthal(int n)
 {
 	if (n == 0)
 		return 0;
 	if (n == 1)
 		return 1;
-	return jacobus(n - 1) + 2 * jacobus(n - 2);
+	return jacobthal(n - 1) + 2 * jacobthal(n - 2);
 }
 
 void PmergeMe::showSortResults()
@@ -136,4 +138,20 @@ std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 	right = fordJohnsonSort(right);
 
 	return merge(left, right);
+}
+
+std::vector<int> PmergeMe::newFordJohnsonSort(std::vector<int> &vec)
+{
+	std::vector<std::pair<int, int>> pairs;
+
+	for (auto i = vec.begin(); i != vec.end(); i++)
+	{
+		int a = *i;
+		int b = *(++i);
+		if (a > b)
+			pairs.push_back(std::make_pair(b, a));
+		else
+			pairs.push_back(std::make_pair(a, b));
+	}
+
 }
