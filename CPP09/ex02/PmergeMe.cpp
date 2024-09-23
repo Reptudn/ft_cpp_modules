@@ -93,6 +93,8 @@ std::vector<int> PmergeMe::merge(const std::vector<int>& left, const std::vector
 	auto itLeft = left.begin();
 	auto itRight = right.begin();
 
+	std::cout << left.size() << " " << right.size() << std::endl;
+
 	do
 	{
 
@@ -124,16 +126,84 @@ std::vector<int> PmergeMe::merge(const std::vector<int>& left, const std::vector
 	return result;
 }
 
+void preSort(std::vector<int> &vec, int pack_size)
+{
+	std::cout << "pack_size: " << pack_size << std::endl;
+	std::cout << "vec.size(): " << vec.size() << std::endl;
+	for (auto it = vec.begin(); it < vec.end(); it += 2 * pack_size)
+	{
+		auto left = it;
+		auto right = it + pack_size;
+
+		if (*left > *right)
+		{
+			for (int i = 0; i < pack_size && right != vec.end(); i++)
+			{
+				std::cout << "swapping " << *left << " and " << *right << " to ";
+				std::swap(*left, *right);
+				std::cout << *left << " and " << *right << " with size " << pack_size << std::endl;
+				left++;
+				right++;
+			}
+		}
+	}
+	if (pack_size * (unsigned long)2 <= vec.size())
+		preSort(vec, pack_size * 2);
+}
+
+std::vector<int>::iterator binarySearch(std::vector<int>& result, int num)
+{
+	auto it = result.begin();
+	auto end = result.end();
+	while (it != end)
+	{
+		auto mid = it + (end - it) / 2;
+		if (*mid == num)
+			return mid;
+		if (*mid < num)
+			it = mid + 1;
+		else
+			end = mid;
+	}
+	return it;
+}
+
 std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 {
-	if (vec.size() <= 1)
-		return vec;
+	std::vector<int> result;
+	bool straggler = false;
+	// if (vec.size() <= 1)
+	// 	return vec;
 
-	std::vector<int> left(vec.begin(), vec.begin() + vec.size() / 2);
-	std::vector<int> right(vec.begin() + vec.size() / 2, vec.end());
+	// std::vector<int> left(vec.begin(), vec.begin() + vec.size() / 2);
+	// std::vector<int> right(vec.begin() + vec.size() / 2, vec.end());
 	
-	left = fordJohnsonSort(left);
-	right = fordJohnsonSort(right);
+	// left = fordJohnsonSort(left);
+	// right = fordJohnsonSort(right);
 
-	return merge(left, right);
+	// return merge(left, right);
+
+	for (auto it = vec.begin(); it != vec.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
+	if (vec.size() % 2 != 0)
+	{
+		result.push_back(vec.back());
+		vec.pop_back();
+		straggler = true;
+	}
+
+	preSort(vec, 1);
+	for (auto it = vec.begin(); it != vec.end(); it++)
+		result.insert(binarySearch(result, *it), *it);
+
+	if (straggler)
+		result.pop_back();
+	for (auto it = vec.begin(); it != vec.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl << std::endl;
+	return result;
 }
+
+// https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort
