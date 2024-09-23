@@ -128,8 +128,6 @@ std::vector<int> PmergeMe::merge(const std::vector<int>& left, const std::vector
 
 void preSort(std::vector<int> &vec, int pack_size)
 {
-	std::cout << "pack_size: " << pack_size << std::endl;
-	std::cout << "vec.size(): " << vec.size() << std::endl;
 	for (auto it = vec.begin(); it < vec.end(); it += 2 * pack_size)
 	{
 		auto left = it;
@@ -139,19 +137,17 @@ void preSort(std::vector<int> &vec, int pack_size)
 		{
 			for (int i = 0; i < pack_size && right != vec.end(); i++)
 			{
-				std::cout << "swapping " << *left << " and " << *right << " to ";
 				std::swap(*left, *right);
-				std::cout << *left << " and " << *right << " with size " << pack_size << std::endl;
 				left++;
 				right++;
 			}
 		}
 	}
-	if (pack_size * (unsigned long)2 <= vec.size())
+	if (pack_size * (unsigned long)2 < vec.size())
 		preSort(vec, pack_size * 2);
 }
 
-std::vector<int>::iterator binarySearch(std::vector<int>& result, int num)
+std::vector<int>::iterator PmergeMe::binarySearch(std::vector<int>& result, int num)
 {
 	auto it = result.begin();
 	auto end = result.end();
@@ -168,42 +164,50 @@ std::vector<int>::iterator binarySearch(std::vector<int>& result, int num)
 	return it;
 }
 
+// TODO: understand this and write on my own
+void PmergeMe::jacobthalInsert(std::vector<int> &vec)
+{
+	int n = vec.size();
+
+	// Determine the maximum possible Jacobthal index we can use
+	int max_index = 0;
+	while (jacobus(max_index) < n) {
+		max_index++;
+	}
+	max_index--;  // Adjust to last valid Jacobthal index
+
+	// Perform the insertion sort using the Jacobthal numbers as gaps
+	for (int index = max_index; index >= 1; --index) {
+		int gap = jacobus(index);
+		for (int i = gap; i < n; i++) {
+			int temp = vec[i];
+			int j;
+			for (j = i; j >= gap && vec[j - gap] > temp; j -= gap) {
+				vec[j] = vec[j - gap];
+			}
+			vec[j] = temp;
+		}
+	}
+}
+
 std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 {
 	std::vector<int> result;
 	bool straggler = false;
-	// if (vec.size() <= 1)
-	// 	return vec;
-
-	// std::vector<int> left(vec.begin(), vec.begin() + vec.size() / 2);
-	// std::vector<int> right(vec.begin() + vec.size() / 2, vec.end());
-	
-	// left = fordJohnsonSort(left);
-	// right = fordJohnsonSort(right);
-
-	// return merge(left, right);
-
-	for (auto it = vec.begin(); it != vec.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
 
 	if (vec.size() % 2 != 0)
 	{
-		result.push_back(vec.back());
-		vec.pop_back();
+		vec.push_back(INT_MAX);
 		straggler = true;
 	}
 
 	preSort(vec, 1);
-	for (auto it = vec.begin(); it != vec.end(); it++)
-		result.insert(binarySearch(result, *it), *it);
+	jacobthalInsert(vec);
 
 	if (straggler)
-		result.pop_back();
-	for (auto it = vec.begin(); it != vec.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl << std::endl;
-	return result;
+		vec.pop_back();
+
+	return vec;
 }
 
 // https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort
