@@ -30,13 +30,13 @@ PmergeMe::~PmergeMe()
 	return;
 }
 
-int PmergeMe::jacobus(int n)
+int PmergeMe::jacobthal(int n)
 {
 	if (n == 0)
 		return 0;
 	if (n == 1)
 		return 1;
-	return jacobus(n - 1) + 2 * jacobus(n - 2);
+	return jacobthal(n - 1) + 2 * jacobthal(n - 2);
 }
 
 int PmergeMe::showSortResults()
@@ -89,46 +89,7 @@ int PmergeMe::showSortResults()
 	return 0;
 }
 
-std::vector<int> PmergeMe::merge(const std::vector<int>& left, const std::vector<int>& right) {
-	
-	std::vector<int> result;
-
-	auto itLeft = left.begin();
-	auto itRight = right.begin();
-
-	std::cout << left.size() << " " << right.size() << std::endl;
-
-	do
-	{
-
-		if (*itLeft < *itRight)
-		{
-			result.push_back(*itLeft);
-			itLeft++;
-		}
-		else
-		{
-			result.push_back(*itRight);
-			itRight++;
-		}
-
-	} while (itLeft != left.end() && itRight != right.end());
-
-	while (itLeft != left.end())
-	{
-		result.push_back(*itLeft);
-		itLeft++;
-	}
-
-	while (itRight != right.end())
-	{
-		result.push_back(*itRight);
-		itRight++;
-	}
-
-	return result;
-}
-
+// create pairs and sort for largest pairs
 void preSort(std::vector<int> &vec, int pack_size)
 {
 	for (auto it = vec.begin(); it < vec.end(); it += 2 * pack_size)
@@ -167,49 +128,88 @@ std::vector<int>::iterator PmergeMe::binarySearch(std::vector<int>& result, int 
 	return it;
 }
 
-// TODO: understand this and write on my own
-void PmergeMe::jacobthalInsert(std::vector<int> &vec)
+void PmergeMe::jacobthalInsert(std::vector<int> &S, std::vector<int> &pend)
 {
-	int n = vec.size();
+	int val;
 
-	// Determine the maximum possible Jacobthal index we can use
-	int max_index = 0;
-	while (jacobus(max_index) < n) {
-		max_index++;
-	}
-	max_index--;  // Adjust to last valid Jacobthal index
+	val = pend.front();
+	pend.erase(pend.begin());
+	S.insert(S.begin(), val);
 
-	// Perform the insertion sort using the Jacobthal numbers as gaps
-	for (int index = max_index; index >= 1; --index) {
-		int gap = jacobus(index);
-		for (int i = gap; i < n; i++) {
-			int temp = vec[i];
-			int j;
-			for (j = i; j >= gap && vec[j - gap] > temp; j -= gap) {
-				vec[j] = vec[j - gap];
-			}
-			vec[j] = temp;
-		}
+	std::vector<int>::iterator it;
+	int index;
+	int insert;
+	do
+	{
+		index = jacobthal(pend.size()) % pend.size();
+		it = pend.begin() + index;
+		val = *it;
+		pend.erase(it);
+		insert = binarySearch(S, val) - S.begin();
+		S.insert(binarySearch(S, val), val);
+	} while (!pend.empty());
+}
+
+// TODO: implement sortPairs
+void PmergeMe::sortPairs(std::vector<std::pair<int, int>> &pairs)
+{
+	for (auto it = pairs.begin(); it < pairs.end(); it++)
+	{
+		if (it->second > (it + 1)->second)
+			std::swap(it, ++it);
 	}
+}
+
+std::vector<std::pair<int, int>> PmergeMe::createPairs(std::vector<int> &vec)
+{
+	std::vector<std::pair<int, int>> pairs;
+	pairs.reserve(vec.size() / 2);
+	for (auto it = vec.begin(); it < vec.end(); it += 2)
+	{
+		if (*it > *(it + 1))
+			pairs.push_back(std::make_pair(*(it + 1), *it));
+		else
+			pairs.push_back(std::make_pair(*it, *(it + 1)));
+	}
+	return pairs;
 }
 
 std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 {
 	bool straggler = false;
+	int straggler_val = 0;
 
+	std::vector<std::pair<int, int>> pairs;
+	std::vector<int> S;
+	std::vector<int> pend;
+
+	S.reserve(vec.size());
 	if (vec.size() % 2 != 0)
 	{
-		vec.push_back(__INT_MAX__);
+		straggler_val = vec.back();
+		vec.pop_back();
 		straggler = true;
 	}
+	pend.reserve(vec.size() / 2);
 
-	preSort(vec, 1);
-	jacobthalInsert(vec);
+	pairs = createPairs(vec);
+	sortPairs(pairs);
+
+	for (auto it = pairs.begin(); it < pairs.end(); it++)
+	{
+		pend.push_back(it->first);
+		S.push_back(it->second);
+	}
+
+	jacobthalInsert(S, pend);
 
 	if (straggler)
-		vec.pop_back();
+		S.insert(binarySearch(S, straggler_val), straggler_val);
 
-	return vec;
+	for (auto it = S.begin(); it != S.end(); it++) std::cout << *it << " ";
+	std::cout << std::endl;
+
+	return S;
 }
 
 // https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort
