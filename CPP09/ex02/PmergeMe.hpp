@@ -16,7 +16,7 @@ class PmergeMe
 		void jacobthalInsert(std::vector<int> &vec);
 		int jacobus(int n);
 	public:
-		PmergeMe(char **argv);
+		PmergeMe(char **argv, int argc);
 		~PmergeMe();
-		void showSortResults();
+		int showSortResults();
 };

@@ -8,8 +8,9 @@
 #include <utility>
 #include <vector>
 
-PmergeMe::PmergeMe(char **argv)
+PmergeMe::PmergeMe(char **argv, int argc)
 {
+	this->vec.reserve(argc - 1);
 	for (int i = 1; argv[i]; i++)
 	{
 		try {
@@ -19,8 +20,7 @@ PmergeMe::PmergeMe(char **argv)
 			this->vec.push_back(num);
 			this->list.push_back(num);
 		} catch (std::exception &e) {
-			(void)e;
-			throw std::runtime_error("Invalid input");
+			throw std::runtime_error(e.what());
 		}
 	}
 }
@@ -39,7 +39,7 @@ int PmergeMe::jacobus(int n)
 	return jacobus(n - 1) + 2 * jacobus(n - 2);
 }
 
-void PmergeMe::showSortResults()
+int PmergeMe::showSortResults()
 {
 	auto it = this->list.begin();
 	std::cout << "Before:\t";
@@ -61,7 +61,7 @@ void PmergeMe::showSortResults()
 			std::cout << *it << " ";
 		std::cout << std::endl;
 
-		std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
+		std::cout << "Time to process a range of " << list.size() << " elements with std::list\t: " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
 	}
 	{
 		auto start = std::chrono::high_resolution_clock::now();
@@ -69,7 +69,7 @@ void PmergeMe::showSortResults()
 		auto end = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
-		std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
+		std::cout << "Time to process a range of " << vec.size() << " elements with std::vector\t: " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
 	}
 
 	if (vec.size() == list.size())
@@ -81,11 +81,12 @@ void PmergeMe::showSortResults()
 			if (*it != *it2)
 			{
 				std::cout << "Sort failed: Containers are not the same!" << std::endl;
-				return;
+				return 1;
 			}
 		}
 		std::cout << "Sort succeeded: Containers are the same!" << std::endl;
 	}
+	return 0;
 }
 
 std::vector<int> PmergeMe::merge(const std::vector<int>& left, const std::vector<int>& right) {
@@ -194,7 +195,6 @@ void PmergeMe::jacobthalInsert(std::vector<int> &vec)
 
 std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 {
-	std::vector<int> result;
 	bool straggler = false;
 
 	if (vec.size() % 2 != 0)
