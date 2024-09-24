@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#include <algorithm>
 #include <exception>
 #include <ios>
 #include <stdexcept>
@@ -89,28 +90,6 @@ int PmergeMe::showSortResults()
 	return 0;
 }
 
-// create pairs and sort for largest pairs
-void preSort(std::vector<int> &vec, int pack_size)
-{
-	for (auto it = vec.begin(); it < vec.end(); it += 2 * pack_size)
-	{
-		auto left = it;
-		auto right = it + pack_size;
-
-		if (*left > *right)
-		{
-			for (int i = 0; i < pack_size && right != vec.end(); i++)
-			{
-				std::swap(*left, *right);
-				left++;
-				right++;
-			}
-		}
-	}
-	if (pack_size * (unsigned long)2 < vec.size())
-		preSort(vec, pack_size * 2);
-}
-
 std::vector<int>::iterator PmergeMe::binarySearch(std::vector<int>& result, int num)
 {
 	auto it = result.begin();
@@ -138,26 +117,69 @@ void PmergeMe::jacobthalInsert(std::vector<int> &S, std::vector<int> &pend)
 
 	std::vector<int>::iterator it;
 	int index;
-	int insert;
 	do
 	{
 		index = jacobthal(pend.size()) % pend.size();
 		it = pend.begin() + index;
 		val = *it;
 		pend.erase(it);
-		insert = binarySearch(S, val) - S.begin();
 		S.insert(binarySearch(S, val), val);
 	} while (!pend.empty());
 }
 
-// TODO: implement sortPairs
-void PmergeMe::sortPairs(std::vector<std::pair<int, int>> &pairs)
+// TODO: something is wrong here
+std::vector<std::pair<int, int>> PmergeMe::mergePairs(std::vector<std::pair<int, int>> &left, std::vector<std::pair<int, int>> &right)
 {
-	for (auto it = pairs.begin(); it < pairs.end(); it++)
+	std::vector<std::pair<int, int>> res(left.size() + right.size());
+
+	auto itLeft = left.begin();
+	auto itRight = right.begin();
+
+	do
 	{
-		if (it->second > (it + 1)->second)
-			std::swap(it, ++it);
+		
+		if (itLeft->second < itRight->second)
+		{
+			res.push_back(*itLeft);
+			itLeft++;
+		}
+		else
+		{
+			res.push_back(*itRight);
+			itRight++;
+		}
+
+	} while (itLeft != left.end() && itRight != right.end());
+
+
+	while (itLeft != left.end())
+	{
+		res.push_back(*itLeft);
+		itLeft++;
 	}
+
+	while (itRight != right.end())
+	{
+		res.push_back(*itRight);
+		itRight++;
+	}
+
+	return res;
+}
+
+// TODO: implement sortPairs as merge sort
+std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, int>> &pairs)
+{
+	if (pairs.size() <= 1) return pairs;
+
+	std::vector<std::pair<int, int>> left(pairs.begin(), pairs.begin() + pairs.size() / 2);
+	std::vector<std::pair<int, int>> right(pairs.begin() + pairs.size() / 2, pairs.end());
+
+
+	left = sortPairs(left);
+	right = sortPairs(right);
+
+	return pairs;
 }
 
 std::vector<std::pair<int, int>> PmergeMe::createPairs(std::vector<int> &vec)
@@ -194,6 +216,12 @@ std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 
 	pairs = createPairs(vec);
 	sortPairs(pairs);
+
+	for (auto it = pairs.begin(); it < pairs.end(); it++)
+	{
+		std::cout << it->second << " ";
+	}
+	std::cout << std::endl;
 
 	for (auto it = pairs.begin(); it < pairs.end(); it++)
 	{

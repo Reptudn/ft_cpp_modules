@@ -1,5 +1,6 @@
 #pragma once
 
+#include <utility>
 #include <vector>
 #include <list>
 #include <algorithm>
@@ -15,7 +16,8 @@ class PmergeMe
 		void jacobthalInsert(std::vector<int> &S, std::vector<int> &pend);
 		int jacobthal(int n);
 		std::vector<std::pair<int, int>> createPairs(std::vector<int> &vec);
-		void sortPairs(std::vector<std::pair<int, int>> &pairs);
+		std::vector<std::pair<int, int>> sortPairs(std::vector<std::pair<int, int>> &pairs);
+		std::vector<std::pair<int, int>> mergePairs(std::vector<std::pair<int, int>> &left, std::vector<std::pair<int, int>> &right);
 	public:
 		PmergeMe(char **argv, int argc);
 		~PmergeMe();
