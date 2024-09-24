@@ -10,15 +10,17 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
+	int return_val = 0;
+
 	try
 	{
 		PmergeMe pmm(argv, argc);
-		pmm.showSortResults();
+		return_val = pmm.showSortResults();
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 		return 2;
 	}
 
-	return 0;	
+	return return_val;	
 }
