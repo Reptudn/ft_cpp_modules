@@ -1,5 +1,6 @@
 #include "PmergeMe.hpp"
 #include <algorithm>
+#include <cstddef>
 #include <exception>
 #include <ios>
 #include <stdexcept>
@@ -53,6 +54,7 @@ int PmergeMe::showSortResults()
 
 	{
 		auto start = std::chrono::high_resolution_clock::now();
+		// TODO: implement sort for list too
 		this->list.sort();
 		auto end = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
@@ -86,6 +88,9 @@ int PmergeMe::showSortResults()
 			}
 		}
 		std::cout << "Sort succeeded: Containers are the same!" << std::endl;
+	} else {
+		std::cout << "Sort failed: Containers are not the same!" << std::endl;
+		return 1;
 	}
 	return 0;
 }
@@ -109,28 +114,29 @@ std::vector<int>::iterator PmergeMe::binarySearch(std::vector<int>& result, int 
 
 void PmergeMe::jacobthalInsert(std::vector<int> &S, std::vector<int> &pend)
 {
-	int val;
-
-	val = pend.front();
+	int val = pend.front();
 	pend.erase(pend.begin());
 	S.insert(S.begin(), val);
 
 	std::vector<int>::iterator it;
-	int index;
-	do
+	int index = -1;
+	while (!pend.empty())
 	{
-		index = jacobthal(pend.size()) % pend.size();
+		size_t jacob = 0;
+		while ((size_t)jacobthal(jacob) < pend.size())
+			jacob++;
+
+		index = jacobthal(jacob - 1);
 		it = pend.begin() + index;
 		val = *it;
 		pend.erase(it);
 		S.insert(binarySearch(S, val), val);
-	} while (!pend.empty());
+	}
 }
 
-// TODO: something is wrong here
 std::vector<std::pair<int, int>> PmergeMe::mergePairs(std::vector<std::pair<int, int>> &left, std::vector<std::pair<int, int>> &right)
 {
-	std::vector<std::pair<int, int>> res(left.size() + right.size());
+	std::vector<std::pair<int, int>> res;
 
 	auto itLeft = left.begin();
 	auto itRight = right.begin();
@@ -167,7 +173,6 @@ std::vector<std::pair<int, int>> PmergeMe::mergePairs(std::vector<std::pair<int,
 	return res;
 }
 
-// TODO: implement sortPairs as merge sort
 std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, int>> &pairs)
 {
 	if (pairs.size() <= 1) return pairs;
@@ -179,7 +184,7 @@ std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, 
 	left = sortPairs(left);
 	right = sortPairs(right);
 
-	return pairs;
+	return mergePairs(left, right);
 }
 
 std::vector<std::pair<int, int>> PmergeMe::createPairs(std::vector<int> &vec)
@@ -198,12 +203,16 @@ std::vector<std::pair<int, int>> PmergeMe::createPairs(std::vector<int> &vec)
 
 std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 {
+	if (vec.size() <= 1)
+		return vec;
+
 	bool straggler = false;
 	int straggler_val = 0;
 
 	std::vector<std::pair<int, int>> pairs;
 	std::vector<int> S;
 	std::vector<int> pend;
+
 
 	S.reserve(vec.size());
 	if (vec.size() % 2 != 0)
@@ -215,13 +224,7 @@ std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 	pend.reserve(vec.size() / 2);
 
 	pairs = createPairs(vec);
-	sortPairs(pairs);
-
-	for (auto it = pairs.begin(); it < pairs.end(); it++)
-	{
-		std::cout << it->second << " ";
-	}
-	std::cout << std::endl;
+	pairs = sortPairs(pairs);
 
 	for (auto it = pairs.begin(); it < pairs.end(); it++)
 	{
@@ -233,9 +236,6 @@ std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 
 	if (straggler)
 		S.insert(binarySearch(S, straggler_val), straggler_val);
-
-	for (auto it = S.begin(); it != S.end(); it++) std::cout << *it << " ";
-	std::cout << std::endl;
 
 	return S;
 }
