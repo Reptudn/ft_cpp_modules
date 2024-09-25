@@ -280,19 +280,61 @@ std::list<int>::iterator PmergeMe::binarySearchLst(std::list<int>& result, int n
 	return it;
 }
 
+// XXX: no clue if this is correct now
 void PmergeMe::jacobthalInsertLst(std::list<int> &S, std::list<int> &pend)
 {
 	int val = pend.front();
 	pend.pop_front();
 	S.push_front(val);
 
+	std::list<int> insertion_sequence;
+	std::list<int> jacobsthal_sequence;
+
+
+	size_t index = -1;
+	while (++index < pend.size())
+		jacobsthal_sequence.push_back(jacobthal(index));
+
+	for (int idx : jacobsthal_sequence)
+		insertion_sequence.push_back(idx);
+
+	for (size_t i = 0; i < pend.size(); i++)
+	{
+		if (std::find(jacobsthal_sequence.begin(), jacobsthal_sequence.end(), i) == jacobsthal_sequence.end())
+			insertion_sequence.push_back(i);
+	}
+
+	for (int idx : insertion_sequence)
+	{
+		auto it = pend.begin();
+		std::advance(it, idx);
+		if (it == pend.end())
+			continue;
+		int val = *it;
+		pend.erase(it);
+		S.insert(binarySearchLst(S, val), val);
+	}
+
+	return;
+
 	std::list<int>::iterator it;
-	int index = -1;
-	while (pend.size() > 0)
+	index = -1;
+	while (!pend.empty())
 	{
 		size_t jacob = 0;
 		while ((size_t)jacobthal(jacob) < pend.size())
 			jacob++;
+
+		if (jacob == 0)
+		{
+			while (!pend.empty())
+			{
+				val = pend.front();
+				pend.pop_front();
+				S.insert(binarySearchLst(S, val), val);
+			}
+			break;
+		}
 
 		index = jacobthal(jacob - 1);
 		it = pend.begin();
