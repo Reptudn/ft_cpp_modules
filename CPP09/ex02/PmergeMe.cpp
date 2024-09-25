@@ -50,29 +50,28 @@ int PmergeMe::showSortResults()
 		std::cout << *it << " ";
 		it++;
 	}
+	std::cout << "\nAfter:\t";
+	std::list<int> sorted(this->list);
+	sorted.sort();
+	for (auto it = sorted.begin(); it != sorted.end(); it++)
+		std::cout << *it << " ";
 	std::cout << std::endl;
 
 	{
 		auto start = std::chrono::high_resolution_clock::now();
-		// TODO: implement sort for list too
-		this->list.sort();
+		list = fordJohnsonSortLst(list);
 		auto end = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-		
-		std::cout << "After:\t";
-		for (auto it = this->list.begin(); it != this->list.end(); it++)
-			std::cout << *it << " ";
-		std::cout << std::endl;
 
-		std::cout << "Time to process a range of " << list.size() << " elements with std::list\t: " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
+		std::cout << "Time to process a range of " << list.size() << " elements with std::list : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
 	}
 	{
 		auto start = std::chrono::high_resolution_clock::now();
-		vec = fordJohnsonSort(vec);
+		vec = fordJohnsonSortVec(vec);
 		auto end = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
 
-		std::cout << "Time to process a range of " << vec.size() << " elements with std::vector\t: " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
+		std::cout << "Time to process a range of " << vec.size() << " elements with std::vect : " << std::showpoint << duration.count() << " nanoseconds" << std::endl;
 	}
 
 	if (vec.size() == list.size())
@@ -95,7 +94,7 @@ int PmergeMe::showSortResults()
 	return 0;
 }
 
-std::vector<int>::iterator PmergeMe::binarySearch(std::vector<int>& result, int num)
+std::vector<int>::iterator PmergeMe::binarySearchVec(std::vector<int>& result, int num)
 {
 	auto it = result.begin();
 	auto end = result.end();
@@ -112,7 +111,7 @@ std::vector<int>::iterator PmergeMe::binarySearch(std::vector<int>& result, int 
 	return it;
 }
 
-void PmergeMe::jacobthalInsert(std::vector<int> &S, std::vector<int> &pend)
+void PmergeMe::jacobthalInsertVec(std::vector<int> &S, std::vector<int> &pend)
 {
 	int val = pend.front();
 	pend.erase(pend.begin());
@@ -130,11 +129,11 @@ void PmergeMe::jacobthalInsert(std::vector<int> &S, std::vector<int> &pend)
 		it = pend.begin() + index;
 		val = *it;
 		pend.erase(it);
-		S.insert(binarySearch(S, val), val);
+		S.insert(binarySearchVec(S, val), val);
 	}
 }
 
-std::vector<std::pair<int, int>> PmergeMe::mergePairs(std::vector<std::pair<int, int>> &left, std::vector<std::pair<int, int>> &right)
+std::vector<std::pair<int, int>> PmergeMe::mergePairsVec(std::vector<std::pair<int, int>> &left, std::vector<std::pair<int, int>> &right)
 {
 	std::vector<std::pair<int, int>> res;
 
@@ -173,24 +172,22 @@ std::vector<std::pair<int, int>> PmergeMe::mergePairs(std::vector<std::pair<int,
 	return res;
 }
 
-std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, int>> &pairs)
+std::vector<std::pair<int, int>> PmergeMe::sortPairsVec(std::vector<std::pair<int, int>> &pairs)
 {
 	if (pairs.size() <= 1) return pairs;
 
 	std::vector<std::pair<int, int>> left(pairs.begin(), pairs.begin() + pairs.size() / 2);
 	std::vector<std::pair<int, int>> right(pairs.begin() + pairs.size() / 2, pairs.end());
 
+	left = sortPairsVec(left);
+	right = sortPairsVec(right);
 
-	left = sortPairs(left);
-	right = sortPairs(right);
-
-	return mergePairs(left, right);
+	return mergePairsVec(left, right);
 }
 
-std::vector<std::pair<int, int>> PmergeMe::createPairs(std::vector<int> &vec)
+std::vector<std::pair<int, int>> PmergeMe::createPairsVec(std::vector<int> &vec)
 {
 	std::vector<std::pair<int, int>> pairs;
-	pairs.reserve(vec.size() / 2);
 	for (auto it = vec.begin(); it < vec.end(); it += 2)
 	{
 		if (*it > *(it + 1))
@@ -201,7 +198,7 @@ std::vector<std::pair<int, int>> PmergeMe::createPairs(std::vector<int> &vec)
 	return pairs;
 }
 
-std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
+std::vector<int> PmergeMe::fordJohnsonSortVec(std::vector<int> &vec)
 {
 	if (vec.size() <= 1)
 		return vec;
@@ -223,8 +220,8 @@ std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 	}
 	pend.reserve(vec.size() / 2);
 
-	pairs = createPairs(vec);
-	pairs = sortPairs(pairs);
+	pairs = createPairsVec(vec);
+	pairs = sortPairsVec(pairs);
 
 	for (auto it = pairs.begin(); it < pairs.end(); it++)
 	{
@@ -232,12 +229,164 @@ std::vector<int> PmergeMe::fordJohnsonSort(std::vector<int> &vec)
 		S.push_back(it->second);
 	}
 
-	jacobthalInsert(S, pend);
+	jacobthalInsertVec(S, pend);
 
 	if (straggler)
-		S.insert(binarySearch(S, straggler_val), straggler_val);
+		S.insert(binarySearchVec(S, straggler_val), straggler_val);
 
 	return S;
 }
+
+std::list<int>::iterator PmergeMe::binarySearchLst(std::list<int>& result, int num)
+{
+	auto it = result.begin();
+	auto end = result.end();
+	while (it != end)
+	{
+		auto mid = it;
+		std::advance(mid, std::distance(it, end) / 2);
+		if (*mid == num)
+			return mid;
+		if (*mid < num)
+		{
+			if (std::distance(it, mid) == 0)
+				it++;
+			else
+				it = mid;
+		}
+		else
+			end = mid;
+	}
+	return it;
+}
+
+void PmergeMe::jacobthalInsertLst(std::list<int> &S, std::list<int> &pend)
+{
+	int val = pend.front();
+	pend.pop_front();
+	S.push_front(val);
+
+	std::list<int>::iterator it;
+	int index = -1;
+	while (pend.size() > 0)
+	{
+		size_t jacob = 0;
+		while ((size_t)jacobthal(jacob) < pend.size())
+			jacob++;
+
+		index = jacobthal(jacob - 1);
+		it = pend.begin();
+		std::advance(it, index);
+		val = *it;
+		pend.erase(it);
+		S.insert(binarySearchLst(S, val), val);
+	}
+}
+
+std::list<std::pair<int, int>> PmergeMe::mergePairsLst(std::list<std::pair<int, int>> &left, std::list<std::pair<int, int>> &right)
+{
+	std::list<std::pair<int, int>> res;
+
+	auto itLeft = left.begin();
+	auto itRight = right.begin();
+
+	do
+	{
+		
+		if (itLeft->second < itRight->second)
+		{
+			res.push_back(*itLeft);
+			itLeft++;
+		}
+		else
+		{
+			res.push_back(*itRight);
+			itRight++;
+		}
+
+	} while (itLeft != left.end() && itRight != right.end());
+
+	while (itLeft != left.end())
+	{
+		res.push_back(*itLeft);
+		itLeft++;
+	}
+
+	while (itRight != right.end())
+	{
+		res.push_back(*itRight);
+		itRight++;
+	}
+
+	return res;
+
+}
+
+std::list<std::pair<int, int>> PmergeMe::sortPairsLst(std::list<std::pair<int, int>> &pairs)
+{
+	if (pairs.size() <= 1) return pairs;
+
+	auto middle = pairs.begin();
+	std::advance(middle, pairs.size() / 2);
+
+	std::list<std::pair<int, int>> left(pairs.begin(), middle);
+	std::list<std::pair<int, int>> right(middle, pairs.end());
+
+	left = sortPairsLst(left);
+	right = sortPairsLst(right);
+
+	return mergePairsLst(left, right);
+}
+
+std::list<std::pair<int, int>> PmergeMe::createPairsLst(std::list<int> &list)
+{
+	std::list<std::pair<int, int>> pairs;
+	for (auto it = list.begin(); it != list.end(); it++)
+	{
+		if (*it > *(++it))
+			pairs.push_back(std::make_pair(*it, *(--it)));
+		else
+			pairs.push_back(std::make_pair(*(--it), *it));
+	}
+	return pairs;
+}
+
+std::list<int> PmergeMe::fordJohnsonSortLst(std::list<int> &list)
+{
+	if (list.size() <= 1)
+		return list;
+
+	bool straggler = false;
+	int straggler_val = 0;
+
+	std::list<std::pair<int, int>> pairs;
+	std::list<int> S;
+	std::list<int> pend;
+
+	if (list.size() % 2 != 0)
+	{
+		straggler_val = list.back();
+		list.pop_back();
+		straggler = true;
+	}
+
+	pairs = createPairsLst(list);
+	pairs = sortPairsLst(pairs);
+
+	for (auto it = pairs.begin(); it != pairs.end(); it++)
+	{
+		pend.push_back(it->first);
+		S.push_back(it->second);
+	}
+
+	jacobthalInsertLst(S, pend);
+
+	if (straggler)
+		S.insert(binarySearchLst(S, straggler_val), straggler_val);
+
+	return S;
+}
+
+// FIXME: std::list somewhere is gettign bigger than the actual amount of elements there are supposed to be
 
 // https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort
