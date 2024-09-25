@@ -29,6 +29,8 @@ class PmergeMe
 		std::vector<std::pair<int, int>> mergePairsVec(std::vector<std::pair<int, int>> &left, std::vector<std::pair<int, int>> &right);
 	public:
 		PmergeMe(char **argv, int argc);
+		PmergeMe(const PmergeMe &other);
+		PmergeMe &operator=(const PmergeMe &other);
 		~PmergeMe();
 		int showSortResults();
 };

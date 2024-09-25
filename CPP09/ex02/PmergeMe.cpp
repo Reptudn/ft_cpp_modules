@@ -27,9 +27,24 @@ PmergeMe::PmergeMe(char **argv, int argc)
 	}
 }
 
+PmergeMe &PmergeMe::operator=(const PmergeMe &other)
+{
+	if (this == &other) return *this;
+
+	this->vec = std::vector<int>(other.vec);
+	this->list = std::list<int>(other.list);
+	return *this;
+}
+
+PmergeMe::PmergeMe(const PmergeMe& other)
+{
+	this->vec = std::vector<int>(other.vec);
+	this->list = std::list<int>(other.list);
+}
+
 PmergeMe::~PmergeMe()
 {
-	return;
+	std::cout << "PmergeMe destructor" << std::endl;
 }
 
 int PmergeMe::jacobthal(int n)

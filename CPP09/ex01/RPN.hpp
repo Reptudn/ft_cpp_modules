@@ -11,6 +11,8 @@ class RPN
 
 	public:
 		RPN(std::string polish);
+		RPN(const RPN &rpn);
+		RPN &operator=(const RPN &rpn);
 		~RPN();
 		void calculate();
 };

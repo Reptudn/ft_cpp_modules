@@ -64,8 +64,15 @@ RPN::RPN(std::string polish)
 
 }
 
+RPN::RPN(const RPN &rpn)
+{
+	this->input = std::stack<std::string>(rpn.input);
+	this->stack = std::stack<std::string>(rpn.stack);
+}
+
 RPN::~RPN()
 {
+	std::cout << "RPN destruct" << std::endl;
 }
 
 void RPN::calculate()

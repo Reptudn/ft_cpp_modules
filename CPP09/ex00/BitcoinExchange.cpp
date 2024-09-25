@@ -5,7 +5,7 @@
 #include <regex>
 #include <iomanip>
 
-// XXX: I check the file before i get the courseand everything
+// XXX: I check the file before i get the course and everything
 BitcoinExchange::BitcoinExchange(std::string filename)
 {
 	_filename = filename;
@@ -39,6 +39,25 @@ BitcoinExchange::BitcoinExchange(std::string filename)
 		throw std::runtime_error("There is an error with the input file.");
 	}
 
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &exchange)
+{
+	if (this == &exchange) return *this;
+
+	_filename = std::string(exchange._filename);
+	_db = std::string(exchange._db);
+	_data = std::multiset<BitcoinData>(exchange._data);
+	_d = std::multiset<BitcoinCourse>(exchange._d);
+	return *this;
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &exchange)
+{
+	_filename = std::string(exchange._filename);
+	_db = std::string(exchange._db);
+	_data = std::multiset<BitcoinData>(exchange._data);
+	_d = std::multiset<BitcoinCourse>(exchange._d);
 }
 
 void BitcoinExchange::loadInputFile() // YYYY-MM-DD | VALUE

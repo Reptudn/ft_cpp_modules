@@ -50,6 +50,8 @@ class BitcoinExchange
 		BitcoinCourse getCourse(std::tm date) const;
 	public:
 		BitcoinExchange(std::string filepath);
+		BitcoinExchange &operator=(const BitcoinExchange &exchange);
+		BitcoinExchange(const BitcoinExchange &exchange);
 		~BitcoinExchange() = default;
 		void printExchange() const;
 };
