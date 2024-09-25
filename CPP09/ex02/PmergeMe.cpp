@@ -234,6 +234,11 @@ std::vector<int> PmergeMe::fordJohnsonSortVec(std::vector<int> &vec)
 	if (straggler)
 		S.insert(binarySearchVec(S, straggler_val), straggler_val);
 
+	// std::cout << "Sorted vect: ";
+	// for (auto it = S.begin(); it != S.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+
 	return S;
 }
 
@@ -341,12 +346,19 @@ std::list<std::pair<int, int>> PmergeMe::sortPairsLst(std::list<std::pair<int, i
 std::list<std::pair<int, int>> PmergeMe::createPairsLst(std::list<int> &list)
 {
 	std::list<std::pair<int, int>> pairs;
-	for (auto it = list.begin(); it != list.end(); it++)
+
+	auto it = list.begin();
+	while (it != list.end())
 	{
-		if (*it > *(++it))
-			pairs.push_back(std::make_pair(*it, *(--it)));
+		int first = *it;
+		++it;
+		int second = *it;
+
+		if (first > second)
+			pairs.push_back(std::make_pair(second, first));
 		else
-			pairs.push_back(std::make_pair(*(--it), *it));
+			pairs.push_back(std::make_pair(first, second));
+		++it;
 	}
 	return pairs;
 }
@@ -373,6 +385,10 @@ std::list<int> PmergeMe::fordJohnsonSortLst(std::list<int> &list)
 	pairs = createPairsLst(list);
 	pairs = sortPairsLst(pairs);
 
+
+	S.clear();
+	pend.clear();
+
 	for (auto it = pairs.begin(); it != pairs.end(); it++)
 	{
 		pend.push_back(it->first);
@@ -384,9 +400,12 @@ std::list<int> PmergeMe::fordJohnsonSortLst(std::list<int> &list)
 	if (straggler)
 		S.insert(binarySearchLst(S, straggler_val), straggler_val);
 
+	// std::cout << "Sorted list: ";
+	// for (auto it = S.begin(); it != S.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+
 	return S;
 }
-
-// FIXME: std::list somewhere is gettign bigger than the actual amount of elements there are supposed to be
 
 // https://github.com/PunkChameleon/ford-johnson-merge-insertion-sort

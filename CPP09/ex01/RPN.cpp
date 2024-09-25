@@ -12,9 +12,29 @@ RPN::RPN(std::string polish)
 		throw std::runtime_error("Error: Invalid character in polish notation");
 	}
 
+	int start = 0;
+	int end = polish.length() - 1;
+	while (start < end)
+	{
+		if (std::isspace(polish[start]))
+			start++;
+		else if (std::isspace(polish[end]))
+			end--;
+		else
+			break;
+	}
+
+	polish = polish.substr(start, end - start + 1);
+
 	while (polish.find(' ') != std::string::npos)
 	{
-		input.push(polish.substr(0, polish.find(' ')));
+		std::string line = polish.substr(0, polish.find(' '));
+
+		if (line != " " && !line.empty() && line != "")
+		{
+			input.push(line);
+
+		}
 		polish = polish.substr(polish.find(' ') + 1);
 	}
 	input.push(polish);
@@ -32,6 +52,8 @@ RPN::RPN(std::string polish)
 			numbers++;
 		}
 		catch (std::exception &e) {
+			if (line.length() != 1)
+				throw std::runtime_error("Error: Invalid character in polish notation");
 			(void)e;
 			operators++;
 		}

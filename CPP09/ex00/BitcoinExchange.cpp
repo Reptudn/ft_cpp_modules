@@ -5,19 +5,18 @@
 #include <regex>
 #include <iomanip>
 
+// XXX: I check the file before i get the courseand everything
 BitcoinExchange::BitcoinExchange(std::string filename)
 {
 	_filename = filename;
 	_db = "data.csv";
 	if (!isFileValid("data.csv", std::regex(R"(\d{4}-\d{2}-\d{2},\d+(\.\d*)?(\r?\n)?$)")))
 		throw std::runtime_error("There is an error with the db file.");
-	else
-	 	std::cout << "File db: OK!" << std::endl;
+	// else
+	//  	std::cout << "File db: OK!" << std::endl;
 	
 	if (!isFileValid(filename, std::regex(R"(\d{4}-\d{2}-\d{2} \| \d+(\.\d+)?$)")))
 		throw std::runtime_error("There is an error with the input file.");
-	else
-	 	std::cout << "File input: OK!" << std::endl;
 
 	try
 	{
@@ -32,6 +31,7 @@ BitcoinExchange::BitcoinExchange(std::string filename)
 	try
 	{
 		loadInputFile();
+		// std::cout << "File input: OK!" << std::endl;
 	}
 	catch (std::exception &e)
 	{
@@ -57,12 +57,12 @@ void BitcoinExchange::loadInputFile() // YYYY-MM-DD | VALUE
 		strptime(date.c_str(), "%Y-%m-%d", &tm);
 
 		float val = std::stof(value);
-		if (val < 0.0 || val > 1000.0) 
-		{
-			file.close();
-			throw std::runtime_error("Value out of range");
-		}
-		_data.emplace(tm, val);
+		// if (val < 0.0 || val > 1000.0) 
+		// {
+		// 	file.close();
+		// 	throw std::runtime_error("Value out of range");
+		// }
+		_data.emplace(tm, val, line);
 	}
 	file.close();
 }
@@ -83,14 +83,7 @@ void BitcoinExchange::loadDbFile() // YYYY-MM-DD,VALUE
 		strptime(date.c_str(), "%Y-%m-%d", &tm);
 
 		float val = std::stof(value);
-		// TODO: is the check for 0.0 and 1000.0 necessary?
-		// std::cout << "val is: " << std::showpoint << val << std::endl;
-		// if (val < 0.0 || val > 1000.0) 
-		// {
-		// 	file.close();
-		// 	throw std::runtime_error("Value out of range");
-		// }
-		_d.emplace((BitcoinData){tm, val});
+		_d.emplace((BitcoinData){tm, val, line});
 	}
 	file.close();
 }
@@ -119,9 +112,16 @@ void BitcoinExchange::printExchange() const
 	auto it = _data.begin();
 	while (it != _data.end())
 	{
+		if (!std::regex_match(it->original, std::regex(R"(\d{4}-\d{2}-\d{2} \| \d+(\.\d+)?$)")) || it->value < 0.0 || it->value > 1000.0)
+		{
+			std::cerr << "Invalid" << std::endl;
+			it++;
+			continue;
+		}
+
 		BitcoinCourse course = getCourse(it->date);
 
-		std::cout << std::put_time(&it->date, "%Y-%m-%d") << " => " << it->value << " = " << it->value * course.value << std::endl;
+		std::cout << std::put_time(&it->date, "%Y-%m-%d") << " => " << it->value << " = " << std::to_string(it->value * course.value) << std::endl;
 
 		it++;
 	}
@@ -140,12 +140,11 @@ bool BitcoinExchange::isFileValid(std::string filename, std::regex pattern) cons
 	std::string line;
 	while (std::getline(file, line))
 	{
-		// std::cout << "Line " << i << ": " << line << std::endl;
 		if (i != 0 && !std::regex_match(line, pattern))
 		{
-			std::cerr << line << " doesn't match the right format" << std::endl;
-			file.close();
-			return false;
+			std::cerr << "INFO: " << line << " doesn't match the right format" << std::endl;
+			// file.close();
+			// return false;
 		}
 		i++;
 	}

@@ -11,13 +11,14 @@ typedef struct BitcoinData
 {
 	std::tm date;
 	float value;
+	std::string original;
 	bool operator<(const BitcoinData &data) const
 	{
 		time_t t1 = mktime(const_cast<std::tm*>(&date));
 		time_t t2 = mktime(const_cast<std::tm*>(&data.date));
 		return t1 < t2;
 	}
-	BitcoinData(std::tm date, float value) : date(date), value(value) {}
+	BitcoinData(std::tm date, float value, std::string line) : date(date), value(value), original(line) {}
 } BitcoinData;
 
 typedef struct BitcoinCourse
